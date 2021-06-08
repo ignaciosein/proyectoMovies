@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title APPMOVIES
+    script(src='../Public/js/login.js')
+  body
+    label
+      | FORMULARIO DE LOGIN
+      form#formLogin(action="/" method="POST")
+        input(type='text' placeholder="Ïntroduce Usuario" name='loginUser')
+        br
+        input(type='text' placeholder="Ïntroduce Password" name='loginPasswordUser')
+        br
+        button(type='submit' name='SubmitLogUser' ) ENVIAR
