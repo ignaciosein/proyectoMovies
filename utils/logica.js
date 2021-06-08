@@ -19,5 +19,4 @@ const logica ={
     }
 }
 
-
 module.exports = logica

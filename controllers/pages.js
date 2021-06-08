@@ -1,5 +1,4 @@
 const logica = require("../utils/logica");
-
 const cookieParser = require('cookie-parser');
 
 const pages = {
