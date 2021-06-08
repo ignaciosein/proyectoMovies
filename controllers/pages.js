@@ -18,7 +18,48 @@ const pages = {
                 )
         
        
-    }
+    },
+    getDashboard: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getDashboard: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getSearch: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getSearchTitle: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getMovies: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postSignup: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postLogin: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postMakeMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    putMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    delMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+
 }
 
 
