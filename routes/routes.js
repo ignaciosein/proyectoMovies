@@ -10,7 +10,6 @@ router.get("/search", pages.getSearch)
 router.get("/search/:title", pages.getSearchTitle)
 router.get("/movies", pages.getMovies)
 
-router.post("/signup", pages.postSignup)
 router.post("/login", pages.postLogin)
 router.post("/createMovie", pages.postMakeMovie)
 
