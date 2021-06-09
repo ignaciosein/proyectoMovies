@@ -17,6 +17,6 @@ router.put("/editMovie/:id", pages.putMovie)
 
 router.delete("/editMovie/:id", pages.delMovie)
 
-  
+/*   dasdasdasdasd */
 
 module.exports = router;
