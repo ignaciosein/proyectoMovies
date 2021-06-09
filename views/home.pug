@@ -8,15 +8,14 @@ html(lang='en')
     link(rel='stylesheet' href='../Public/CSS/style.css')
   body.divHome
     h1 HOME
-    form.classForm(action='/' method='POST')
-    p Ya estas registrado?
-    input#email.input(type='text' placeholder='Introduce tu Email...')
-    br
-    input#password.input(type='text' placeholder='Introduce tu contraseña...')
-    br
-    button.boton1(type='submit') LOG IN
-    br
-    br
+      | FORMULARIO DE LOGIN
+      form#formLogin(action="/" method="POST")
+        input(type='text' placeholder="Introduce Usuario" name='loginUser')
+        
+        input(type='text' placeholder="Introduce Password" name='loginPasswordUser')
+         
+        button(type='submit' name='SubmitLogUser' ) ENVIAR
+    
     p Aún no lo estas?
     input#email.input(type='text' placeholder='Introduce tu Email...')
     br
@@ -25,7 +24,3 @@ html(lang='en')
     input#password.input(type='text' placeholder='Repite tu contraseña...')
     br
     button.boton1(type='submit') SIGN UP
-    |       templating language with a
-    |       strong focus on performance
-    |       and powerful features.
-    p
