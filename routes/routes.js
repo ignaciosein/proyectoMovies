@@ -3,6 +3,7 @@ const pages = require("../controllers/pages")
 
 router.get("/", pages.home);
 router.post("/", pages.postHome)
+ 
 router.get("/dashboard", pages.getDashboard)
 router.get("/search", pages.getSearch)
 router.get("/search/:title", pages.getSearchTitle)
@@ -16,8 +17,6 @@ router.put("/editMovie/:id", pages.putMovie)
 
 router.delete("/editMovie/:id", pages.delMovie)
 
-
-
-
+  
 
 module.exports = router;
