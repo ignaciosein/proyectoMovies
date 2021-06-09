@@ -7,7 +7,10 @@ html(lang='en')
     title Document
   body
     h1 SEARCH
-    input#search(type='text' placeholder='Buscar Película')
+            form(action='/film' method='post')
+            input#filmName(type='text' name='peliculaBuscar')
+            button#searchFilm(type='submit') 
+    input#search(type='text' placeholder='Buscar Película' name='filmToSearch')
     br
     button(type='submit') BUSCAR!
     div DIV DE IMAGEN
@@ -17,3 +20,4 @@ html(lang='en')
     p Duración:
     p Género:
     button.boton1(type='submit') INICIO
+ 
