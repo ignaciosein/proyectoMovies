@@ -3,7 +3,7 @@ const pages = require("../controllers/pages")
 
 router.get("/", pages.home);
 router.post("/", pages.postLogin)
-router.post("/singup", pages.postSingUp)
+ 
  
 router.get("/dashboard", pages.getDashboard)
 router.get("/search", pages.getSearch)
