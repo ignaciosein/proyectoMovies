@@ -20,11 +20,11 @@ const pages = {
                 let token = logica.generateToken(user);
                 res.cookie('token',token);
                 if(logica.getRolUser(user) == "admin"){
-                    res.status(200).send(`Aqui va la pantalla del ADMIN ${token}`)
-                    /* res.status(200).render("admin") *///plantilla admin
-                }else if(logica.getRolUser(usuario) == "user"){
-                    res.status(200).send(`Aqui va la pantalla del USER ${token}`)
-                    /* res.status(200).render("usuario") *///plantilla user
+                    /* res.status(200).send(`Aqui va la pantalla del ADMIN ${token}`) */
+                    res.status(200).render("admin") //plantilla admin
+                }else if(logica.getRolUser(user) == "user"){
+                    /* res.status(200).send(`Aqui va la pantalla del USER ${token}`) */
+                    res.status(200).render("user") //plantilla user
                 }
             }else{
                 res.status(400).send('Aqui va el ERROR del TOKEN')
@@ -44,7 +44,7 @@ const pages = {
         console.log(user.user)
         if(!logica.getUser(user)){
             if(logica.createUser(user)){
-                //
+                //si todo va bien se devuelve la página de inicio del usuario
                 res.status(200).send('Usuario no existe OOKKK')
             }else{
                 res.status(400).send('ERROR AL CREAR EL USUARIO')
@@ -53,12 +53,8 @@ const pages = {
             res.status(400).send('USAURIO YA EXISTE')
         }
     },
-      getDashboard: (req, res)=>{
-        res.status(200).render("home");
-        // req.body.loginUser;
-    },
     getDashboard: (req, res)=>{
-        res.status(200).render("dashboard");
+        res.status(200).render("home");
         // req.body.loginUser;
     },
     getSearch: (req, res)=>{
@@ -75,14 +71,6 @@ const pages = {
         let data = await pelis.getMovie(`http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`);
         res.status(200).render('film', data);
     },
-    postSignup: (req, res)=>{
-        res.status(200).render("home");
-        // req.body.loginUser;
-    },
-    postLogin: (req, res)=>{
-        res.status(200).render("home");
-        // req.body.loginUser;
-    },
     postMakeMovie: (req, res)=>{
         res.status(200).render("home");
         // req.body.loginUser;
@@ -95,7 +83,6 @@ const pages = {
         res.status(200).render("home");
         // req.body.loginUser;
     }
-
 }
 
 
