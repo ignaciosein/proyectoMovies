@@ -40,6 +40,7 @@ const pages = {
         console.log(user.user)
         if(!logica.getUser(user)){
             if(logica.createUser(user)){
+                //
                 res.status(200).send('Usuario no existe OOKKK')
             }else{
                 res.status(400).send('ERROR AL CREAR EL USUARIO')
