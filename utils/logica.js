@@ -7,8 +7,8 @@ const usurioDB = {
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 
-const logica ={
-    compruebaUsuario : (data) => {
+const logica = {
+    validateUser : (data) => {
         return data.user==usurioDB.name && data.password==usurioDB.password ;
     },  
     getRolUser : (data) =>{
@@ -17,6 +17,12 @@ const logica ={
     generateToken : (data)=>{
         let tkn = jwt.sign({user: data.user}, process.env.SECRET, { expiresIn: '10h' });
         return tkn;
+    },
+    getUser : (data) =>{
+        return (data.user == usurioDB.name)
+    },
+    createUser : (data) =>{
+        return true //query para crear un usuario en la BBDD
     }
 }
 

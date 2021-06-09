@@ -1,21 +1,21 @@
  
 const logica = require("../utils/logica");
+ 
 const cookieParser = require('cookie-parser');
 const apiKey = process.env.API_KEY;
+ 
  
 
 const pages = {
     home: (req, res)=>{
         res.status(200).render("home");
-        // req.body.loginUser;
     },
-    postHome: (req, res)=>{
- 
+    postLogin: (req, res)=>{
         const user = {
             user : req.body.loginUser,
             password : req.body.loginPasswordUser
         }
-        if(logica.compruebaUsuario(user)){
+        if(logica.validateUser(user)){
             if(logica.generateToken(user)){
                 let token = logica.generateToken(user);
                 res.cookie('token',token);
@@ -27,11 +27,30 @@ const pages = {
                     /* res.status(200).render("usuario") *///plantilla user
                 }
             }else{
-                res.status(200).send('Aqui va el ERROR del TOKEN')
-                /* res.status(200).render("usuario") *///crear una plantilla de errores
+                res.status(400).send('Aqui va el ERROR del TOKEN')
+                /* res.status(200).render("plantilladerror",{error:"de usuario"})  */
             }
         }else{
-            res.status(200).send('USAURIO NO EXISTE')//redireccionar a la plantilla de registro
+            res.status(400).send('USAURIO NO EXISTE')//redireccionar a la plantilla de registro
+             /* res.status(200).render("plantilladerror",{error:"usuario no exite"})  */
+        }
+    },
+    postSingUp : (req,res) =>{
+        const user = {
+            user : req.body.loginUser,
+            email : req.body.emailUser,
+            password : req.body.loginPasswordUser
+        }
+        console.log(user.user)
+        if(!logica.getUser(user)){
+            if(logica.createUser(user)){
+                //
+                res.status(200).send('Usuario no existe OOKKK')
+            }else{
+                res.status(400).send('ERROR AL CREAR EL USUARIO')
+            }
+        }else{
+            res.status(400).send('USAURIO YA EXISTE')
         }
     },
       getDashboard: (req, res)=>{
@@ -78,11 +97,6 @@ const pages = {
     }
 
 }
-
- 
-
-
- 
 
 
  
