@@ -46,11 +46,11 @@ const pages = {
         // req.body.loginUser;
     },
     getSearchTitle: (req, res)=>{
-        res.status(200).render("searchtitle");
+        res.status(200).render("searchTitle");
         // req.body.loginUser;
     },
     getMovies: (req, res)=>{
-        res.status(200).render("movies");
+        res.status(200).render("searchPelis");
         // req.body.loginUser;
     },
     postSignup: (req, res)=>{
