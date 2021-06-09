@@ -1,5 +1,7 @@
+ 
 const logica = require("../utils/logica");
 const cookieParser = require('cookie-parser');
+ 
 
 const pages = {
     home: (req, res)=>{
@@ -7,6 +9,7 @@ const pages = {
         // req.body.loginUser;
     },
     postHome: (req, res)=>{
+ 
         const user = {
             user : req.body.loginUser,
             password : req.body.loginPasswordUser
@@ -29,8 +32,55 @@ const pages = {
         }else{
             res.status(200).send('USAURIO NO EXISTE')//redireccionar a la plantilla de registro
         }
+    },
+      getDashboard: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getDashboard: (req, res)=>{
+        res.status(200).render("dashboard");
+        // req.body.loginUser;
+    },
+    getSearch: (req, res)=>{
+        res.status(200).render("search");
+        // req.body.loginUser;
+    },
+    getSearchTitle: (req, res)=>{
+        res.status(200).render("searchtitle");
+        // req.body.loginUser;
+    },
+    getMovies: (req, res)=>{
+        res.status(200).render("movies");
+        // req.body.loginUser;
+    },
+    postSignup: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postLogin: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postMakeMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    putMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    delMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
     }
 
 }
 
+ 
+
+
+ 
+
+
+ 
 module.exports = pages;

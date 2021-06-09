@@ -1,3 +1,4 @@
+ 
 :root{
     --black: #000;
     --white: #f7fafe;
@@ -46,6 +47,5 @@ h1{
     border-radius: 40px;
     background-color: yellow;
     color: var(--black);
-
 }
 
