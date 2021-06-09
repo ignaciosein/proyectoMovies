@@ -1,8 +1,9 @@
  
 const logica = require("../utils/logica");
- 
+const pelis = require("../utils/pelis");
+require("dotenv").config();
 const cookieParser = require('cookie-parser');
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.APIKEY;
  
  
 
@@ -57,7 +58,60 @@ const pages = {
         res.status(200).render("home");
         // req.body.loginUser;
     },
-    getSearch: (req, res)=>{
+    postSearch: async (req, res)=>{
+        let movie = req.body.peliculaBuscar;
+
+        
+        let data = await pelis.getMovie(`http://www.omdbapi.com/?s=${movie}&apikey=${apiKey}`);
+       
+        let arrayVacio = [];    
+        for (let index = 0; index < data.Search.length; index++) {
+           
+            let idDePelis = data.Search[index].imdbID
+            
+            let data2 = await pelis.getMovie(`http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`);
+
+             
+             
+            let Director = data2.Director
+            let Genre = data2.Genre
+            let Actors = data2.Actors
+            let Title = data2.Title
+
+           /*  console.log(`Director : ${Director},Genero :${Genre},Actor : ${Actors}, Titulo: ${Title}`); */
+
+            
+
+            arrayVacio.push(`{Director: ${Director}, Genero: ${Genre}, Actor: ${Actors}, Titulo: ${Title}},`)
+
+         }
+      
+         console.log(arrayVacio );
+
+         console.log(object);
+         res.status(200).render("searchAllDetails", arrayVacio );
+      
+        /* console.log(titulo); */
+   
+ 
+         
+        
+       /*  res.status(200).render('film', data); */
+      
+        
+  
+
+       
+        
+
+
+   
+        /* res.status(200).render("searchAllDetails", data ); */
+   
+        // req.body.loginUser;
+    },
+    getSearch:   (req, res)=>{
+        
         res.status(200).render("search");
         // req.body.loginUser;
     },

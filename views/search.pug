@@ -5,17 +5,16 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Document
-  body
-    h1 SEARCH
- 
-    input#search(type='text' placeholder='Buscar Película' required)
-    br
-    button(type='submit') BUSCAR!
+    body 
+     h1 SEARCH 
+        form(action='/searchAllDetails' method='post')
+            input#filmName(type='text' placeholder='Buscar Película' required name='peliculaBuscar') 
+            button#searchFilm(type='submit') BUSCAR!
+    button(type='submit') 
     div DIV DE IMAGEN
     p Título:
     p Año:
     p Director:
     p Duración:
     p Género:
-    button.boton1(type='submit') INICIO
- 
+    button.boton1(type='submit') INICIO 
