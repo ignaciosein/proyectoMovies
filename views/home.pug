@@ -4,14 +4,23 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title APPMOVIES
-    script(src='../Public/js/login.js')
-  body
-    label
+    title Document
+    link(rel='stylesheet' href='../Public/CSS/style.css')
+  body.divHome
+    h1 HOME
       | FORMULARIO DE LOGIN
       form#formLogin(action="/" method="POST")
-        input(type='text' placeholder="Ïntroduce Usuario" name='loginUser')
-        br
-        input(type='text' placeholder="Ïntroduce Password" name='loginPasswordUser')
-        br
+        input(type='text' placeholder="Introduce Usuario" name='loginUser')
+        
+        input(type='text' placeholder="Introduce Password" name='loginPasswordUser')
+         
         button(type='submit' name='SubmitLogUser' ) ENVIAR
+    
+    p Aún no lo estas?
+    input#email.input(type='text' placeholder='Introduce tu Email...')
+    br
+    input#password.input(type='text' placeholder='Nueva contraseña...')
+    br
+    input#password.input(type='text' placeholder='Repite tu contraseña...')
+    br
+    button.boton1(type='submit') SIGN UP
