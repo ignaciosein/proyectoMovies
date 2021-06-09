@@ -24,19 +24,19 @@ const pages = {
         // req.body.loginUser;
     },
     getDashboard: (req, res)=>{
-        res.status(200).render("home");
+        res.status(200).render("dashboard");
         // req.body.loginUser;
     },
     getSearch: (req, res)=>{
-        res.status(200).render("home");
+        res.status(200).render("search");
         // req.body.loginUser;
     },
     getSearchTitle: (req, res)=>{
-        res.status(200).render("home");
+        res.status(200).render("searchtitle");
         // req.body.loginUser;
     },
     getMovies: (req, res)=>{
-        res.status(200).render("home");
+        res.status(200).render("movies");
         // req.body.loginUser;
     },
     postSignup: (req, res)=>{
