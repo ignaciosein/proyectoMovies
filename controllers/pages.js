@@ -1,6 +1,5 @@
+ 
 const logica = require("../utils/logica");
-
-
 
 const pages = {
     home: (req, res)=>{
@@ -48,8 +47,50 @@ const pages = {
         }else{
             res.status(400).send('USAURIO YA EXISTE')
         }
+    },
+      getDashboard: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    getDashboard: (req, res)=>{
+        res.status(200).render("dashboard");
+        // req.body.loginUser;
+    },
+    getSearch: (req, res)=>{
+        res.status(200).render("search");
+        // req.body.loginUser;
+    },
+    getSearchTitle: (req, res)=>{
+        res.status(200).render("searchtitle");
+        // req.body.loginUser;
+    },
+    getMovies: (req, res)=>{
+        res.status(200).render("movies");
+        // req.body.loginUser;
+    },
+    postSignup: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postLogin: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    postMakeMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    putMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
+    },
+    delMovie: (req, res)=>{
+        res.status(200).render("home");
+        // req.body.loginUser;
     }
 
 }
 
+
+ 
 module.exports = pages;
