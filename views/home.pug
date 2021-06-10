@@ -10,7 +10,7 @@ html(lang='en')
     h1 HOME
       | FORMULARIO DE LOGIN
       form#formLogin(action="/" method="POST")
-        input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
+        input(type='text' placeholder="Introduce Usuario" name='loginUser' required )
         
         input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
          
@@ -24,3 +24,17 @@ html(lang='en')
     input#password.input(type='text' placeholder='Repite tu contraseña...' required)
     br
     button.boton1(type='submit') SIGN UP
+
+    if flag == true
+        .box
+            .box-cont
+                span Mensaje:
+                p#resultado #{message}
+                br
+                a#oka(href=link) Aceptar
+    else 
+        .boxNone
+            .box-cont
+                p#resultado #{message}
+                br
+                a#oka(href=link) Aceptar
