@@ -65,6 +65,7 @@ const pages = {
         let data = await pelis.getMovie(`http://www.omdbapi.com/?s=${movie}&apikey=${apiKey}`);
        
         let arrayVacio = [];    
+
         for (let index = 0; index < data.Search.length; index++) {
            
             let idDePelis = data.Search[index].imdbID
@@ -72,24 +73,27 @@ const pages = {
             let data2 = await pelis.getMovie(`http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`);
 
              
-             
+         /*     
             let Director = data2.Director
             let Genre = data2.Genre
             let Actors = data2.Actors
             let Title = data2.Title
-
+ */
            /*  console.log(`Director : ${Director},Genero :${Genre},Actor : ${Actors}, Titulo: ${Title}`); */
 
             
 
-            arrayVacio.push(`{Director: ${Director}, Genero: ${Genre}, Actor: ${Actors}, Titulo: ${Title}},`)
+           /*  arrayVacio.push(`{Director: ${Director}, Genero: ${Genre}, Actor: ${Actors}, Titulo: ${Title}},`) */
+           
+         let array = await arrayVacio.push(data2)
 
          }
       
-         console.log(arrayVacio );
+              console.log(arrayVacio) 
 
-         console.log(object);
-         res.status(200).render("searchAllDetails", arrayVacio );
+       
+
+       res.status(200).render("searchAllDetails",  {arrayVacio});
       
         /* console.log(titulo); */
    

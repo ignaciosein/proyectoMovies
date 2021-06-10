@@ -6,11 +6,13 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Document
     body 
-        h1 for Each/lop
+        h1 TODAS LAS PELICULAS
         ul
            for result in arrayVacio
              li Título #{result.Title}
              li Año #{result.Year}
              li Director #{result.Director}   
-             li Actores '#{result.Actors} 
-             br
+             li Duracion '#{result.Runtime} 
+             li Genero '#{result.Genre} 
+             img(src='#{result.Poster}')
+             
