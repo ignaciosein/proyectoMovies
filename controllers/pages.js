@@ -66,14 +66,16 @@ const pages = {
         // req.body.loginUser;
     },
     getMovies: async (req, res) => {
-
         let tituloDePelicula = req.params.title;
         let data = await pelis.getMovie(`http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`);
         res.status(200).render('film', data);
     },
-    postMakeMovie: (req, res)=>{
+    getCreateMovie: (req, res)=>{
+        res.status(200).render("createMovie");
+    },
+    postCreateMovie: (req, res)=>{
         res.status(200).render("home");
-        // req.body.loginUser;
+        //req.body.loginUser;
     },
     putMovie: (req, res)=>{
         res.status(200).render("home");
