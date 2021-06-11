@@ -44,7 +44,18 @@ const logica = {
             console.log(err)
             return false
           }
-    }
+    },
+/*       loadMovie: async (data)=>{
+        
+          try {
+            const newMovie = await movie.save();
+            console.log('ok', newMovie)
+            return true
+          } catch (err) {
+            console.log(err)
+            return false
+          }
+    } */
 }
 
 module.exports = logica

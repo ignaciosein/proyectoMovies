@@ -52,7 +52,7 @@ const pages = {
     }
     },
   getDashboard: (req, res) => {
-    res.status(200).render("home");
+    res.status(200).render("user");
     // req.body.loginUser;
   },
   postSearch: async (req, res) => {
@@ -140,6 +140,14 @@ const pages = {
     );
     res.status(200).render("film", data);
   },
+/*   getLocalMovies: async (req, res) => {
+    let tituloDePelicula = req.params.title;
+    let data = await pelis.getMovie(
+      `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
+    );
+    res.status(200).render("film", data);
+  }, */
+  
   postMakeMovie: (req, res) => {
     res.status(200).render("home");
     // req.body.loginUser;
