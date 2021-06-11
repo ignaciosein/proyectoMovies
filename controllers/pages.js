@@ -27,12 +27,12 @@ const pages = {
                     res.status(200).render("user") //plantilla user
                 }
             }else{
-                res.status(400).send('Aqui va el ERROR del TOKEN')
-                /* res.status(200).render("plantilladerror",{error:"de usuario"})  */
+                /* res.status(400).send('Aqui va el ERROR del TOKEN') */
+                res.status(200).render("message",{ tipo:"Error", message: "Se ha producido un error al generar el token", link : req.url, flag: true})
             }
         }else{
-            res.status(400).send('USAURIO NO EXISTE')//redireccionar a la plantilla de registro
-             /* res.status(200).render("plantilladerror",{error:"usuario no exite"})  */
+            /* res.status(400).send('USAURIO NO EXISTE') */ //redireccionar a la plantilla de registro
+             res.status(200).render("message",{tipo:"Error", message:"Usuario password incorrecta", link: req.url, flag: true}) 
         }
     },
     postSingUp : (req,res) =>{
