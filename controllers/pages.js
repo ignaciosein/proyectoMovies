@@ -151,7 +151,6 @@ const pages = {
   delMovie: (req, res) => {
     res.status(200).render("home");
     // req.body.loginUser;
-  },
+  }
 };
-
 module.exports = pages;
