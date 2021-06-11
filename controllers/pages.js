@@ -1,5 +1,10 @@
  
 const logica = require("../utils/logica");
+ 
+const cookieParser = require('cookie-parser');
+const apiKey = process.env.API_KEY;
+ 
+ 
 
 const pages = {
     home: (req, res)=>{
@@ -60,9 +65,11 @@ const pages = {
         res.status(200).render("searchTitle");
         // req.body.loginUser;
     },
-    getMovies: (req, res)=>{
-        res.status(200).render("searchPelis");
-        // req.body.loginUser;
+    getMovies: async (req, res) => {
+
+        let tituloDePelicula = req.params.title;
+        let data = await pelis.getMovie(`http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`);
+        res.status(200).render('film', data);
     },
     postMakeMovie: (req, res)=>{
         res.status(200).render("home");

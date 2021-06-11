@@ -10,18 +10,16 @@ html(lang='en')
     h1 HOME
       | FORMULARIO DE LOGIN
       form#formLogin(action="/" method="POST")
-        input(type='text' placeholder="Introduce Usuario" name='loginUser' required )
-        
+        input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
         input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
-         
         button(type='submit' name='SubmitLogUser' ) ENVIAR
     
     p Aún no lo estas?
-    input#email.input(type='text' placeholder='Introduce tu Email...')
+    input#email.input(type='text' placeholder='Introduce tu Email...' required)
     br
-    input#password.input(type='text' placeholder='Nueva contraseña...')
+    input#password.input(type='text' placeholder='Nueva contraseña...' required)
     br
-    input#password.input(type='text' placeholder='Repite tu contraseña...')
+    input#password.input(type='text' placeholder='Repite tu contraseña...' required)
     br
     button.boton1(type='submit') SIGN UP
 
