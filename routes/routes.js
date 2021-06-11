@@ -3,21 +3,21 @@ const pages = require("../controllers/pages")
 
 router.get("/", pages.home);
 router.post("/", pages.postLogin)
-router.post("/singup", pages.postSingUp)
+ 
  
 router.get("/dashboard", pages.getDashboard)
+router.post("/search", pages.postSearch)
 router.get("/search", pages.getSearch)
 router.get("/search/:title", pages.getSearchTitle)
 router.get("/movies", pages.getMovies)
 
-router.post("/signup", pages.postSignup)
 router.post("/login", pages.postLogin)
-router.post("/createMovie", pages.postMakeMovie)
+
+router.get("/createMovie", pages.getCreateMovie)
+router.post("/createMovie", pages.postCreateMovie)
 
 router.put("/editMovie/:id", pages.putMovie)
 
 router.delete("/editMovie/:id", pages.delMovie)
-
-  
 
 module.exports = router;
