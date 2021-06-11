@@ -73,8 +73,18 @@ const pages = {
     getCreateMovie: (req, res)=>{
         res.status(200).render("createMovie");
     },
-    postCreateMovie: (req, res)=>{
-        res.status(200).render("home");
+    postCreateMovie: async (req, res)=>{
+        const movie = {
+            title : req.body.title,
+            year: req.body.year,
+            director: req.body.director,
+            gender: req.body.gender,
+            duration: req.body.duration,
+            image: req.body.image,
+            time: req.body.time
+        }
+        let result = await logica.saveMovie(movie)
+        res.status(200).render("message", {tipo:"Error", message:`el result es ${result}`, link: req.url, flag: true} );
         //req.body.loginUser;
     },
     putMovie: (req, res)=>{

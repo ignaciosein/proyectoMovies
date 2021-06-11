@@ -9,7 +9,7 @@ const localMoviesSchemas = new Schema({
     },
     year:{
         type: Number,
-        required: true,
+        required: true
     },
     director:{
         type:String,
@@ -20,14 +20,20 @@ const localMoviesSchemas = new Schema({
         require: true
     },
     duration : {
-        type:Number,
+        type:String,
         required: true
     },
     image : {
         type:String,
         required: true
-    }
+    },
+    time : { type: String, default: () => Math.floor(Date.now() / 1000)},
+    registerDate: {
+        type: Date,
+        required: true,
+        default: new Date()
+      }
 });
 
-const Movie = mongoose.model("Movie",localMoviesSchemas);
-module.exports = Movie;
+const Movies = mongoose.model("localMovie",localMoviesSchemas);
+module.exports = Movies
