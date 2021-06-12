@@ -115,17 +115,9 @@ const pages = {
         // req.body.loginUser;
     },
     deleteMovie: (req, res)=>{
-
-    /*   let borrarPeli = req.params.title */
-
-  /*     console.log(borrarPeli)
-     */
- 
-
-  
-  Movies.findOneAndRemove({title:  req.params.title}, function (err) {});
    
-
+  Movies.findOneAndRemove({title:  req.params.title}, function (err) {});
+ 
         res.status(200).render("admin");
         // req.body.loginUser;
      },
