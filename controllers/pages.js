@@ -95,8 +95,8 @@ const pages = {
             time: req.body.time
         }
         let result = await logica.saveMovie(movie)
-        res.status(200).render("message", {tipo:"Error", message:`el result es ${result}`, link: req.url, flag: true} );
-        //req.body.loginUser;
+        result?res.status(418).render("message", {tipo:"Info: ", message:`Información introducida correctamente`, link: req.url, flag: true} ):
+        res.status(418).render("message", {tipo:"Error: ", message:`Información introducida correctamente`, link: req.url, flag: true} )
     },
     putMovie: (req, res)=>{
         res.status(200).render("home");

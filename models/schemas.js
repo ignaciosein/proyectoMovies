@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+
 const localMoviesSchemas = new Schema({
     title:{
         type:String,
@@ -27,7 +29,9 @@ const localMoviesSchemas = new Schema({
         type:String,
         required: true
     },
-    time : { type: String, default: () => Math.floor(Date.now() / 1000)},
+    id : { 
+        type:Number
+    },
     registerDate: {
         type: Date,
         required: true,
@@ -35,5 +39,6 @@ const localMoviesSchemas = new Schema({
       }
 });
 
+localMoviesSchemas.plugin(AutoIncrement, {inc_field: 'id'});
 const Movies = mongoose.model("localMovie",localMoviesSchemas);
 module.exports = Movies

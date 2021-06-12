@@ -13,7 +13,12 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 
-mongoose.connect(process.env.projectMoviesDB, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex : true });
+mongoose.connect(process.env.projectMoviesDB, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useCreateIndex : true,
+    useFindAndModify: false
+});
 const db = mongoose.connection;
 db.on("error", error => console.log(error));
 db.once("open", () => console.log("connection to db established"));

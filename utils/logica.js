@@ -38,7 +38,7 @@ const logica = {
           });
           try {
             const newMovie = await movie.save();
-            console.log('ok', newMovie)
+            /* console.log('ok', newMovie) */
             return true
           } catch (err) {
             console.log(err)
