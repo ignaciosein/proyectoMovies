@@ -118,7 +118,7 @@ const pages = {
    
   Movies.findOneAndRemove({title:  req.params.title}, function (err) {});
  
-        res.status(200).render("admin");
+        res.status(200).render("deleteFilm");
         // req.body.loginUser;
      },
   getSearch: (req, res) => {

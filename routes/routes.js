@@ -19,6 +19,7 @@ router.post("/createMovie", pages.postCreateMovie)
 
 router.put("/editMovie/:id", pages.putMovie)
 
-router.get("/editPelis/:title", pages.deleteMovie)
+router.get("/deleteFilm/:title", pages.deleteMovie)
+ 
 
 module.exports = router;
