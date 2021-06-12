@@ -6,6 +6,7 @@ router.post("/", pages.postLogin)
  
  
 router.get("/dashboard", pages.getDashboard)
+router.get("/admin", pages.getLocalMovies)
 router.post("/search", pages.postSearch)
 router.get("/search", pages.getSearch)
 router.get("/search/:title", pages.getSearchTitle)
