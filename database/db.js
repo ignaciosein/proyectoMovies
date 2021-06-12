@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 require("dotenv").config();
 
 mongoose.connect(process.env.projectMoviesDB, { 
@@ -14,7 +14,7 @@ db.once("open", () => console.log("connection to db established"));
 
 
 
-
+  */
 
 
 /* const mongoose = require('mongoose')

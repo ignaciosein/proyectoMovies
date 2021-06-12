@@ -13,12 +13,12 @@ router.get("/search/:title", pages.getSearchTitle)
 router.get("/movies", pages.getMovies)
 
 router.post("/login", pages.postLogin)
-router.post("/createMovie", pages.postMakeMovie)
+
+router.get("/createMovie", pages.getCreateMovie)
+router.post("/createMovie", pages.postCreateMovie)
 
 router.put("/editMovie/:id", pages.putMovie)
 
 router.delete("/editMovie/:id", pages.delMovie)
-
-/*   dasdasdasdasd */
 
 module.exports = router;
