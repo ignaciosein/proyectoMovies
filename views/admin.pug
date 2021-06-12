@@ -3,15 +3,26 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=ç, initial-scale=1.0')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/search.css', type='text/css' )
     title Document
-  body
-    h1 ADMIN
-    button.boton1(type='submit') CREAR NUEVA PELÍCULA
-    br
-    div
-    button(type='submit') EDITAR
-    button(type='submit') ELIMINAR
-    p #{titulo}
-    p #{resumen}
-                    
+    body 
+     h1 ADMIN 
+     button.boton1(type='submit') CREAR NUEVA PELÍCULA
+     br
+     button(type='submit') EDITAR
+     button(type='submit') ELIMINAR
+     br
+     #pintarPeliculas
+      if resultM              
+        for result in resultM
+          p
+          p  
+          h1 #{result.title}
+          p  Año #{result.year}
+          p  Director #{result.director}   
+          p  Duracion '#{result.duration} 
+          p  Genero ' #{result.gender}
+          p
+          a(href=`search/${result.title}`) Ficha Completa
+          img#Poster(src=result.image) 

@@ -1,5 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
+const Movies = require("../models/schemas")  
+ 
  
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
@@ -23,7 +25,8 @@ const pages = {
             res.cookie('token',token);
             if(logica.getRolUser(user) == "admin"){
                 /* res.status(200).send(`Aqui va la pantalla del ADMIN ${token}`) */
-                res.status(200).render("admin") //plantilla admin
+                 res.redirect("admin")  
+              /*     res.status(200).render("admin") //plantilla admin  */
             }else if(logica.getRolUser(user) == "user"){
                 /* res.status(200).send(`Aqui va la pantalla del USER ${token}`) */
                 res.status(200).render("user") //plantilla user
@@ -144,18 +147,11 @@ const pages = {
     );
     res.status(200).render("film", data);
   },
-  getLocalMovies:   (req, res) => {
+  getLocalMovies: async   (req, res) => {
 
-    
-
-      let arraynuevo =   { titulo: "titulo", resumen: "resumen" } 
-
-     /*  let todo = db.inventory.find( {films} ) */
-      
-      
-   
-      
-    res.status(200).render("admin",arraynuevo);
+    let resultM = await logica.loadlLocalMovies()
+          
+        res.status(200).render("admin" ,{resultM});  
   },
   postMakeMovie: (req, res) => {
     res.status(200).render("home");
