@@ -3,6 +3,7 @@ const pelis = require("../utils/pelis");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const apiKey = process.env.APIKEY;
+const Movies = require('../models/schemas')
 
 const pages = {
   home: (req, res) => {
@@ -85,7 +86,7 @@ const pages = {
         res.status(200).render("createMovie");
     },
     postCreateMovie: async (req, res)=>{
-        const movie = {
+        const movie = new Movies ({
             title : req.body.title,
             year: req.body.year,
             director: req.body.director,
@@ -93,10 +94,12 @@ const pages = {
             duration: req.body.duration,
             image: req.body.image,
             time: req.body.time
-        }
-        let result = await logica.saveMovie(movie)
-        result?res.status(418).render("message", {tipo:"Info: ", message:`Información introducida correctamente`, link: req.url, flag: true} ):
-        res.status(418).render("message", {tipo:"Error: ", message:`Información introducida correctamente`, link: req.url, flag: true} )
+        })
+        let result = await await movie.save((err) =>{
+          let mErro=err.message.split(':')[0]
+          err?res.status(400).render("message", {type:"Error: ", message:`${mErro}`, link: req.url, flag: true} ):
+          res.status(200).render("message", {type:"Info: ", message:`Información introducida correctamente`, link: req.url, flag: true} )
+        })
     },
     putMovie: (req, res)=>{
         res.status(200).render("home");
