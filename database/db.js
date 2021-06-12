@@ -1,12 +1,58 @@
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+mongoose.connect(process.env.projectMoviesDB, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useCreateIndex : true,
+  useFindAndModify: false
+});
+const db = mongoose.connection;
+db.on("error", error => console.log(error));
+db.once("open", () => console.log("connection to db established"));
+
+
+
+
+
+
+
+/* const mongoose = require('mongoose')
+require ("dotenv").config()
+const conectionString = process.env.projectMoviesDB
+
+
+mongoose.connect(conectionString ,{
+  useNewUrlParser: true ,
+  useUnifiedTopology: true ,
+  useCreateIndex: true
+})
+.then(() => {
+  
+  console.log('Database connected');
+}).catch(err => {
+
+  console.log(err);
+
+})
+
+
+ */
+
+
+
+
+
+/* const MongoClient = require("mongodb").MongoClient;
  
 const url = "mongodb://localhost:27017/";
  
 //esto creara la base de datos de nombhre"database" y con collecion "mensajes"
 MongoClient.connect(url, { useUnifiedTopology: true } ,function(err, db) {
   if (err) throw err;
-  const dbo = db.db("movies");
+  const dbo = db.db("movies"); */
 
+ 
   
 /*   dbo.createCollection("users", function(err, res) {
     if (err) throw err;
@@ -89,4 +135,4 @@ MongoClient.connect(url, { useUnifiedTopology: true } ,function(err, db) {
     db.close();
   });
  */
-});
+/* }); */
