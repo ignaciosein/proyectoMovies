@@ -1,7 +1,8 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
-const Movies = require("../models/schemas")  
  
+const Movies = require("../models/schemas")  
+   
  
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
@@ -80,7 +81,10 @@ const pages = {
 
       let array = await arrayVacio.push(data2);
     }
-
+     
+ 
+    /* console.log(arrayVacio.Ratings[0].Value); */ //// PARA ACCEDER A LOS RATINGS DE LAS PELICULAS
+ 
     res.status(200).render("search", { arrayVacio });
   },
     getMovies: async (req, res) => {
@@ -102,15 +106,27 @@ const pages = {
             time: req.body.time
         }
         let result = await logica.saveMovie(movie)
-        res.status(200).render("message", {tipo:"Error", message:`el result es ${result}`, link: req.url, flag: true} );
+       res.status(200).render("message", {tipo:"Error", message:`Se añadó la película ${req.body.title} a la base de datos` , link: req.url, flag: true} );
+       
         //req.body.loginUser;
     },
     putMovie: (req, res)=>{
         res.status(200).render("home");
         // req.body.loginUser;
     },
-    delMovie: (req, res)=>{
-        res.status(200).render("home");
+    deleteMovie: (req, res)=>{
+
+    /*   let borrarPeli = req.params.title */
+
+  /*     console.log(borrarPeli)
+     */
+ 
+
+  
+  Movies.findOneAndRemove({title:  req.params.title}, function (err) {});
+   
+
+        res.status(200).render("admin");
         // req.body.loginUser;
      },
   getSearch: (req, res) => {

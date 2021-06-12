@@ -8,7 +8,7 @@ html(lang='en')
     title Document
     body 
      h1 ADMIN 
-     button.boton1(type='submit') CREAR NUEVA PELÍCULA
+     a(href=`createMovie`) CREAR PELICULA
      br
      button(type='submit') EDITAR
      button(type='submit') ELIMINAR
@@ -19,10 +19,12 @@ html(lang='en')
           p
           p  
           h1 #{result.title}
-          p  Año #{result.year}
+          p  Año #{result.year} 
           p  Director #{result.director}   
           p  Duracion '#{result.duration} 
           p  Genero ' #{result.gender}
-          p
+          p  
           a(href=`search/${result.title}`) Ficha Completa
-          img#Poster(src=result.image) 
+          img#Poster(src=result.image)
+          p
+              a(href=`editPelis/${result.title}`) ELIMINAR
