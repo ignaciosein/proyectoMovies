@@ -6,29 +6,22 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
     title Document
-    body 
-     h1 ADMIN 
-     a(href=`createMovie`) CREAR PELICULA
-     br
-     button(type='submit') EDITAR
-     button(type='submit') ELIMINAR
-     br
-     #paintFilms  
-      if !resultM  
-        alert("falla")         
-      else 
-       #paintFilms             
-        for result in resultM
-          p
-          p  
-          h1 #{result.title}
-          p  Año #{result.year} 
-          p  Director #{result.director}   
-          p  Duracion '#{result.duration} 
-          p  Genero ' #{result.gender}
-          p  
-          a(href=`search/${result.title}`) Ficha Completa
-          img#Poster(src=result.image)
-          p
-              a(href=`deleteFilm/${result.title}`) Eliminar
-              a(href=`editMovie/${result.title}`) Editar
+  body 
+    h1 ADMIN 
+    a(href=`createMovie`) CREAR PELICULA
+    br
+    button(type='submit') EDITAR
+    button(type='submit') ELIMINAR
+    br
+    if resultM
+        for result in resultM 
+          a(href=`search/${result.title}`)
+             .paintFilms 
+                h1 #{result.Title}
+                p Año: #{result.Year}
+                p Director: #{result.Director}
+                p Duración: #{result.Runtime}
+                p Genero: #{result.Genre}
+                img#Poster(src=result.Poster)
+                a(href=`deleteFilm/${result.title}`) Eliminar
+                a(href=`editMovie/${result.title}`) Editar

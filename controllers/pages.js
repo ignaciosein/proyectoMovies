@@ -159,20 +159,8 @@ const pages = {
     res.status(200).render("film", data);
   },
   getLocalMovies: async (req, res) => {
-
-    let resultM = await logica.loadlLocalMovies()
-
-    if (resultM == 0) {
-
-
-      res.status(200).render("admin")
-      /* res.status(200).render("message", {tipo:"Error", message:`NO HAY PELICULAS` } );   */
-
-    }
-    else {
-      res.status(200).render("admin", { resultM });
-
-    }
+    let resultM = await logica.loadlLocalMovies();
+    res.status(200).render("admin",{resultM});
   },
   postMakeMovie: (req, res) => {
     res.status(200).render("home");
