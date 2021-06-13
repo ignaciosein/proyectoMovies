@@ -175,10 +175,11 @@ const pages = {
     res.status(200).render("home");
     // req.body.loginUser;
   },
-  getEditMovie: (req,res)=>{
-    let data = req.query.Id
-    console.log(data)
-    /* res.status(200).render('editMovie',{data}); */
+  getEditMovie: async(req,res)=>{
+    let id = parseInt(req.query.data)
+    let data = await logica.findOneLocalMovies(id)
+    res.status(200).render('editMovie',{data});
+    /* res.status(200).send(data); */
   }
 };
 

@@ -77,3 +77,7 @@ box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.57);
     text-decoration: none;
     font-size: 20px;
 }
+#IdPelicula{
+    color: grey;
+    background-color: rgb(231, 219, 219);
+}

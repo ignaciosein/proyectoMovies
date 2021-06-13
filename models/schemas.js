@@ -29,7 +29,7 @@ const localMoviesSchemas = new Schema({
         type:String,
         required: true
     },
-    Id : { 
+    IdPelicula : { 
         type:Number
     },
     registerDate: {
@@ -39,6 +39,6 @@ const localMoviesSchemas = new Schema({
       }
 });
 
-localMoviesSchemas.plugin(AutoIncrement, {inc_field: 'id'});
+localMoviesSchemas.plugin(AutoIncrement, {inc_field: 'IdPelicula'});
 const Movies = mongoose.model("localMovie",localMoviesSchemas);
 module.exports = Movies

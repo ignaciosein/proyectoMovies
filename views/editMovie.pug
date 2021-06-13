@@ -4,22 +4,25 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
+    script(src='../Public/js/admin.js' defer)
     title Document
   body
     h2 EDITAR PELICULA
-    p #{data.Title}
-    form#formCreateMovie(action=`/createMovie?id=${data.id}` method="PUT")
-      input#title(type='text' placeholder='Título' name="title" value= data.Title required)
+    form#formEditMovie
+      input#title(type='text' placeholder='Título' name="title" value= data[0].Title required)
       br
-      input#year(type='text' placeholder='Año' name="year" value=data.Year required)
+      input#year(type='text' placeholder='Año' name="year" value= data[0].Year required)
       br
-      input#director(type='text' placeholder='Director' name="director" value=data.Year required)
+      input#director(type='text' placeholder='Director' name="director" value= data[0].Director required)
       br
-      input#gender(type='text' placeholder='Género' name="gender" value=data.Genre required)
+      input#gender(type='text' placeholder='Género' name="gender" value= data[0].Genre required)
       br
-      input#duration(type='text' placeholder='Duración' name="duration" value=data.Runtime required)
+      input#duration(type='text' placeholder='Duración' name="duration"  value= data[0].Runtime required)
       br
-      input#image(type='text' placeholder='Imagen' name="image" value=data.Poster required)
+      input#image(type='text' placeholder='Imagen' name="image"  value= data[0].Poster required)
+      br
+      input#IdPelicula(type="text" name="IdPelicula" value=data[0].IdPelicula readonly)
       br
       button.boton1(type='submit') EDITAR
       br
