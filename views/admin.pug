@@ -4,7 +4,7 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='../Public/css/search.css', type='text/css' )
+    link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
     title Document
     body 
      h1 ADMIN 
@@ -13,8 +13,11 @@ html(lang='en')
      button(type='submit') EDITAR
      button(type='submit') ELIMINAR
      br
-     #pintarPeliculas
-      if resultM              
+     #paintFilms  
+      if !resultM  
+        alert("falla")         
+      else 
+       #paintFilms             
         for result in resultM
           p
           p  
@@ -27,4 +30,5 @@ html(lang='en')
           a(href=`search/${result.title}`) Ficha Completa
           img#Poster(src=result.image)
           p
-              a(href=`deleteFilm/${result.title}`) ELIMINARs
+              a(href=`deleteFilm/${result.title}`) Eliminar
+              a(href=`editMovie/${result.title}`) Editar
