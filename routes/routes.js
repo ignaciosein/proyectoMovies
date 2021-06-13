@@ -17,6 +17,7 @@ router.post("/login", pages.postLogin)
 router.get("/createMovie", pages.getCreateMovie)
 router.post("/createMovie", pages.postCreateMovie)
 
+router.get("/editMovie", pages.getEditMovie)
 router.put("/editMovie/:id", pages.putMovie)
 
 router.get("/deleteFilm/:title", pages.deleteMovie)
