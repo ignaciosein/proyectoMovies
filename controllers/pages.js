@@ -1,16 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
-
-const Movies = require("../models/schemas")
-
-
-require("dotenv").config();
-const cookieParser = require("cookie-parser");
 const apiKey = process.env.APIKEY;
-const Movies = require('../models/schemas')
-
-
-
+const Movies = require("../models/schemas");
 
 const pages = {
   home: (req, res) => {
