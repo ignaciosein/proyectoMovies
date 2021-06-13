@@ -166,9 +166,10 @@ const pages = {
     res.status(200).render("home");
     // req.body.loginUser;
   },
-  putMovie: (req, res) => {
-
-    res.status(200).render("editMovie");
+  putMovie: async(req, res) => {
+    let data = req.body 
+    let update = await Movies.findOneAndUpdate({IdPelicula: data.IdPelicula}, data)
+    res.status(200).json("home");
     // req.body.loginUser;
   },
   delMovie: (req, res) => {

@@ -16,15 +16,15 @@ html(lang='en')
       br
       input#director(type='text' placeholder='Director' name="director" value= data[0].Director required)
       br
-      input#gender(type='text' placeholder='Género' name="gender" value= data[0].Genre required)
+      input#genre(type='text' placeholder='Género' name="genre" value= data[0].Genre required)
       br
       input#duration(type='text' placeholder='Duración' name="duration"  value= data[0].Runtime required)
       br
-      input#image(type='text' placeholder='Imagen' name="image"  value= data[0].Poster required)
+      input#poster(type='text' placeholder='Imagen' name="poster"  value= data[0].Poster required)
       br
       input#IdPelicula(type="text" name="IdPelicula" value=data[0].IdPelicula readonly)
       br
-      button.boton1(type='submit') EDITAR
+      button#editMovieButton(type='submit') EDITAR
       br
       a(href=`../admin`) VOLVER AL PANEL DE ADMINISTRADOR
   
