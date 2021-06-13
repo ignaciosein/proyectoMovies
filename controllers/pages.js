@@ -174,6 +174,11 @@ const pages = {
   delMovie: (req, res) => {
     res.status(200).render("home");
     // req.body.loginUser;
+  },
+  getEditMovie: (req,res)=>{
+    let data = req.query.Id
+    console.log(data)
+    /* res.status(200).render('editMovie',{data}); */
   }
 };
 
