@@ -12,7 +12,6 @@ const cookieParser = require('cookie-parser')
 app.set("view engine", "pug");
 app.set("views", "./views");
 
-
 mongoose.connect(process.env.projectMoviesDB, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true, 

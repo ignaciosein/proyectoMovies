@@ -25,6 +25,11 @@ const logica = {
     },
     createUser : (data) =>{
         return true //query para crear un usuario en la BBDD
+    },
+    loadlLocalMovies:async () =>{
+        let resultM = await  Movies.find()
+        /* console.log(resultM) */
+        return resultM //query para crear un usuario en la BBDD
     }
 }
 

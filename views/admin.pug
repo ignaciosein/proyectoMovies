@@ -3,14 +3,25 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=ç, initial-scale=1.0')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
     title Document
-  body
-    h1 ADMIN
-    button.boton1(type='submit') CREAR NUEVA PELÍCULA
+  body 
+    h1 ADMIN 
+    a(href=`createMovie`) CREAR PELICULA
     br
-    div
-      p DIV VACIO
     button(type='submit') EDITAR
     button(type='submit') ELIMINAR
     br
+    if resultM
+        for result in resultM 
+          a(href=`search/${result.title}`)
+             .paintFilms 
+                h1 #{result.Title}
+                p Año: #{result.Year}
+                p Director: #{result.Director}
+                p Duración: #{result.Runtime}
+                p Genero: #{result.Genre}
+                img#Poster(src=result.Poster)
+                a(href=`deleteFilm/${result.title}`) Eliminar
+                a(href=`editMovie/${result.title}`) Editar

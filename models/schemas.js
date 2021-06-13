@@ -17,11 +17,11 @@ const localMoviesSchemas = new Schema({
         type:String,
         require: true
     }, 
-    Gender: {
+    Genre: {
         type:String,
         require: true
     },
-    Duration : {
+    Runtime : {
         type:String,
         required: true
     },
