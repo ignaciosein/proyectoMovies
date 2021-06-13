@@ -4,32 +4,32 @@ const Schema = mongoose.Schema;
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const localMoviesSchemas = new Schema({
-    title:{
+    Title:{
         type:String,
         required: true,
         unique: true
     },
-    year:{
+    Year:{
         type: Number,
         required: true
     },
-    director:{
+    Director:{
         type:String,
         require: true
     }, 
-    gender: {
+    Gender: {
         type:String,
         require: true
     },
-    duration : {
+    Duration : {
         type:String,
         required: true
     },
-    image : {
+    Poster : {
         type:String,
         required: true
     },
-    id : { 
+    Id : { 
         type:Number
     },
     registerDate: {

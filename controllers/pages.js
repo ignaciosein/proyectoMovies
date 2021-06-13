@@ -34,7 +34,7 @@ const pages = {
          res.status(200).render("message",{tipo:"Error", message:"Usuario password incorrecta", link: req.url, flag: true}) 
     }
     },
-    postSingUp : (req,res) =>{
+  postSingUp : (req,res) =>{
     const user = {
         user : req.body.loginUser,
         email : req.body.emailUser,
@@ -49,66 +49,62 @@ const pages = {
             res.status(400).send('ERROR AL CREAR EL USUARIO')
         }
     }else{
-        res.status(400).send('USAURIO YA EXISTE')
+          res.status(400).send('USAURIO YA EXISTE')
     }
-    },
+  },
   getDashboard: (req, res) => {
     res.status(200).render("home");
     // req.body.loginUser;
   },
   postSearch: async (req, res) => {
     let movie = req.body.peliculaBuscar;
-
     let data = await pelis.getMovie(
       `http://www.omdbapi.com/?s=${movie}&apikey=${apiKey}`
     );
-
     let arrayVacio = [];
-
     for (let index = 0; index < data.Search.length; index++) {
       let idDePelis = data.Search[index].imdbID;
-
       let data2 = await pelis.getMovie(
         `http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`
       );
-
       let array = await arrayVacio.push(data2);
     }
-
     res.status(200).render("search", { arrayVacio });
   },
-    getMovies: async (req, res) => {
-        let tituloDePelicula = req.params.title;
-        let data = await pelis.getMovie(`http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`);
-        res.status(200).render('film', data);
-    },
-    getCreateMovie: (req, res)=>{
-        res.status(200).render("createMovie");
-    },
-    postCreateMovie: async (req, res)=>{
-        const movie = new Movies ({
-            title : req.body.title,
-            year: req.body.year,
-            director: req.body.director,
-            gender: req.body.gender,
-            duration: req.body.duration,
-            image: req.body.image,
-            time: req.body.time
-        })
-        let result = await await movie.save((err) =>{
-          let mErro=err.message.split(':')[0]
-          err?res.status(400).render("message", {type:"Error: ", message:`${mErro}`, link: req.url, flag: true} ):
+  getMovies: async (req, res) => {
+      let tituloDePelicula = req.params.title;
+      let data = await pelis.getMovie(`http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`);
+      res.status(200).render('film', data);
+  },
+  getCreateMovie: (req, res)=>{
+      res.status(200).render("createMovie");
+  },
+  postCreateMovie: async (req, res)=>{
+      const movie = new Movies ({
+          Title : req.body.title,
+          Year: req.body.year,
+          Director: req.body.director,
+          Gender: req.body.gender,
+          Duration: req.body.duration,
+          Poster: req.body.image
+      })
+      let result = await await movie.save((err) =>{
+        if (err){
+          let mError = err.message.split(':')[0]
+          res.status(400).render("message", {type:"Error: ", message:`${mError}`, link: req.url, flag: true} )
+        }else {
           res.status(200).render("message", {type:"Info: ", message:`Información introducida correctamente`, link: req.url, flag: true} )
-        })
+        }
+      })
+  },
+  putMovie: (req, res)=>{
+      res.status(200).render("home");
+      // req.body.loginUser;
+  },
+  delMovie: (req, res)=>{
+      res.status(200).render("home");
+      // req.body.loginUser;
     },
-    putMovie: (req, res)=>{
-        res.status(200).render("home");
-        // req.body.loginUser;
-    },
-    delMovie: (req, res)=>{
-        res.status(200).render("home");
-        // req.body.loginUser;
-     },
   getSearch: (req, res) => {
     res.status(200).render("search");
     // req.body.loginUser;
@@ -130,18 +126,17 @@ const pages = {
     let data2 = await pelis.getMovie(
       `http://www.omdbapi.com/?i=${peliculaname}&apikey=${apiKey}`
     );
-
     console.log(data2);
 
-    res.status(200).render("searchAllDetails", data2);
-    // req.body.loginUser;
-  },
-  getMovies: async (req, res) => {
-    let tituloDePelicula = req.params.title;
-    let data = await pelis.getMovie(
-      `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
-    );
-    res.status(200).render("film", data);
+      res.status(200).render("searchAllDetails", data2);
+      // req.body.loginUser;
+    },
+    getMovies: async (req, res) => {
+      let tituloDePelicula = req.params.title;
+      let data = await pelis.getMovie(
+        `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
+      );
+      res.status(200).render("film", data);
   },
   postMakeMovie: (req, res) => {
     res.status(200).render("home");
