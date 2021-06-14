@@ -5,7 +5,7 @@ const Movies = require('../models/schemas')
 const usurioDB = {
     name: "Luis",
     password: "1234",
-    rol: "user"
+    rol: "admin"
 } 
 
 
@@ -31,7 +31,7 @@ const logica = {
         return resultM 
     },
     findOneLocalMovies: async (id) =>{
-        let resultOne = await  Movies.find({IdPelicula: `${id}`})
+        let resultOne = await  Movies.find({IdMovie: `${id}`})
         return resultOne
     }
 }
