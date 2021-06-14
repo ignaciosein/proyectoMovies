@@ -6,6 +6,7 @@ router.post("/", pages.postLogin)
  
  
 router.get("/dashboard", pages.getDashboard)
+router.get("/admin", pages.getLocalMovies)
 router.post("/search", pages.postSearch)
 router.get("/search", pages.getSearch)
 router.get("/search/:title", pages.getSearchTitle)
@@ -16,8 +17,10 @@ router.post("/login", pages.postLogin)
 router.get("/createMovie", pages.getCreateMovie)
 router.post("/createMovie", pages.postCreateMovie)
 
+router.get("/editMovie", pages.getEditMovie)
 router.put("/editMovie/:id", pages.putMovie)
 
-router.delete("/editMovie/:id", pages.delMovie)
+router.get("/deleteFilm/:title", pages.deleteMovie)
+ 
 
 module.exports = router;
