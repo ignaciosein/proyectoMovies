@@ -104,12 +104,16 @@ const pages = {
       Runtime: req.body.duration,
       Poster: req.body.image
     })
-    let result = await await movie.save((err) => {
-      if (err) {
-        let mError = err.message.split(':')[0]
-        res.status(400).render("message", { type: "Error: ", message: `${mError}`, link: req.url, flag: true })
-      } else {
-        res.status(200).render("message", { type: "Info: ", message: `Información introducida correctamente`, link: req.url, flag: true })
+    let result = await movie.save((err) => {
+      try {
+        if (err) {
+          let mError = err.message.split(':')[0]
+          res.status(400).render("message", { type: "Error: ", message: `${mError}`, link: req.url, flag: true })
+        } else {
+          res.status(200).render("message", { type: "Info: ", message: `Información introducida correctamente`, link: req.url, flag: true })
+        }
+      }catch(error){
+        res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
       }
     })
   },
@@ -168,8 +172,17 @@ const pages = {
   },
   putMovie: async(req, res) => {
     let data = req.body 
-    let update = await Movies.findOneAndUpdate({IdPelicula: data.IdPelicula}, data)
-    res.status(200).json("home");
+    let update = await Movies.findOneAndUpdate({IdPelicula: data.IdPelicula}, data, (err,data)=>{
+       if(err){
+        res.status(400).render("message", { type: "Error: ", message: `Error`, link: req.url, flag: true })
+       }else{
+        console.log('DATA', data)
+        res.redirect('http://localhost:3000/admin')
+        /* res.status(200).json({mensaje: "message OK"}) */
+       }
+    })
+/*     console.log('update', update)
+    res.status(200).json("home"); */
     // req.body.loginUser;
   },
   delMovie: (req, res) => {

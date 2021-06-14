@@ -23,6 +23,7 @@ editForm.addEventListener('submit',(e)=>{
     }
 
     let putMethod = async(url, data)=>{
+        console.log("url", url)
         let response = await fetch(url,{
             method: 'PUT',
             body: JSON.stringify(data),
@@ -31,13 +32,14 @@ editForm.addEventListener('submit',(e)=>{
                 'Accept': 'application/json'
             }
         });
-        return response.json()
+        /* console.log(response.json())
+        return response */
     }
 
     putMethod('/editMovie/:id', data)
-        .then( x => {
+/*         .then( x => {
             console.log('la x: ',x)
-        })
+        }) */
     
     
 })
