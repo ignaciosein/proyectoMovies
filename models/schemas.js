@@ -39,6 +39,6 @@ const localMoviesSchemas = new Schema({
       }
 });
 
-localMoviesSchemas.plugin(AutoIncrement, {inc_field: 'IdPelicula'});
+localMoviesSchemas.plugin(AutoIncrement, {inc_field: 'IdMovie'});
 const Movies = mongoose.model("localMovie",localMoviesSchemas);
 module.exports = Movies

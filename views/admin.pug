@@ -9,14 +9,15 @@ html(lang='en')
     title Document
   body 
     h1 ADMIN 
-    a(href=`createMovie`) CREAR PELICULA
+    a(href=`/createMovie`) 
+      button#createMovieButton(type='button') Crear Película
+    a(href='/')
+      button#logoutButton(type='button') Cerrar Sesión
     br
-    button(type='submit') EDITAR
-    button(type='submit') ELIMINAR
     br
     if resultM
         for result in resultM 
-          a(href=`search/${result.title}`)
+          a(href=`search/${result.Title}`)
              .paintFilms 
                 h1 #{result.Title}
                 p Año: #{result.Year}
@@ -24,6 +25,7 @@ html(lang='en')
                 p Duración: #{result.Runtime}
                 p Genero: #{result.Genre}
                 img#Poster(src=result.Poster)
-                a(href=`deleteFilm/${result.title}`) Eliminar
-                a(href=`/editMovie/?data=${result.IdPelicula}`)
-                  button#editMovieButton(value=result.id) Editar
+                a(href=`deleteFilm/${result.Title}`)
+                  button#deleteMovie(type='button') Eliminar
+                a(href=`/editMovie/?data=${result.IdMovie}`)
+                  button#editMovieButton(type='button') Editar

@@ -7,9 +7,10 @@ html(lang='en')
     title Document
   body
     h1 USER
-    input#searchFilm(type='text' placeholder='Buscar Película' required)
-    button.boton1(type='submit') BUSCAR
+    a(href='/search')
+      button.boton1(type='submit') Buscar
     br
-    button.boton1(type='submit') Películas Favoritas
+    a(href='/favMovies')
+      button.boton1(type='submit') Películas Favoritas
     br
-    button.boton1(type='submit') LOG OUT
+    button.boton1(type='submit') Salir
