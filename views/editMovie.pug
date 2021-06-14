@@ -22,9 +22,10 @@ html(lang='en')
       br
       input#poster(type='text' placeholder='Imagen' name="poster"  value= data[0].Poster required)
       br
-      input#IdPelicula(type="text" name="IdPelicula" value=data[0].IdPelicula readonly)
+      input#IdMovie(type="text" name="IdMovie" value=data[0].IdMovie readonly)
       br
-      button#editMovieButton(type='submit') EDITAR
+      button#editMovieButton(type='submit') Aceptar
       br
-      a(href=`../admin`) VOLVER AL PANEL DE ADMINISTRADOR
+      a(href=`/admin`) 
+        button#backButton(type='button') Volver
   

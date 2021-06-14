@@ -7,8 +7,8 @@ editForm.addEventListener('submit',(e)=>{
     genre = document.getElementById('genre').value;
     runtime = document.getElementById('duration').value;
     poster = document.getElementById('poster').value;
-    IdPelicula = document.getElementById('IdPelicula').value
-  
+    IdMovie = document.getElementById('IdMovie').value
+
     let data = {
         Title: title,
         Year: parseInt(year),
@@ -17,7 +17,7 @@ editForm.addEventListener('submit',(e)=>{
         Runtime: runtime,
         Poster: poster,
         registerDate: new Date(),
-        IdPelicula: parseInt(IdPelicula)
+        IdMovie: parseInt(IdMovie)
     }
 
     let putMethod = async(url, data)=>{

@@ -5,9 +5,6 @@ const pelis = {
         let response = await fetch(url)
         let data = await response.json()
         return data
-        // fetch(url)
-        // .then((res)=>res.json())
-        // .then((json)=>console.log(json))
     }
 }
 module.exports=pelis;
