@@ -5,7 +5,7 @@ const Movies = require('../models/schemas')
 const usurioDB = {
     name: "Luis",
     password: "1234",
-    rol: "admin"
+    rol: "user"
 } 
 
 

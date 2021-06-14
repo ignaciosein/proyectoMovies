@@ -9,8 +9,6 @@ editForm.addEventListener('submit',(e)=>{
     poster = document.getElementById('poster').value;
     IdPelicula = document.getElementById('IdPelicula').value
   
-    console.log(title,year,director,genre,runtime,poster,IdPelicula)
-
     let data = {
         Title: title,
         Year: parseInt(year),
@@ -32,14 +30,12 @@ editForm.addEventListener('submit',(e)=>{
                 'Accept': 'application/json'
             }
         });
-        /* console.log(response.json())
-        return response */
+        
+        return response
     }
 
     putMethod('/editMovie/:id', data)
-/*         .then( x => {
-            console.log('la x: ',x)
-        }) */
-    
-    
+        .then( resp => {
+            window.location = resp.url
+        })
 })

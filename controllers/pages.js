@@ -1,15 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
-
 const Movies = require("../models/schemas")
-
-
-require("dotenv").config();
-const cookieParser = require("cookie-parser");
 const apiKey = process.env.APIKEY;
-
-
-
 
 const pages = {
   home: (req, res) => {
@@ -173,17 +165,18 @@ const pages = {
   putMovie: async(req, res) => {
     let data = req.body 
     let update = await Movies.findOneAndUpdate({IdPelicula: data.IdPelicula}, data, (err,data)=>{
-       if(err){
-        res.status(400).render("message", { type: "Error: ", message: `Error`, link: req.url, flag: true })
-       }else{
-        console.log('DATA', data)
-        res.redirect('http://localhost:3000/admin')
-        /* res.status(200).json({mensaje: "message OK"}) */
-       }
+      try{
+        if(err){
+          res.status(400).render("message", { type: "Error: ", message: `Error`, link: req.url, flag: true })
+         }else{
+          console.log('DATA', data)
+          res.redirect(303,'/admin')
+         }
+      }catch(error){
+        res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
+      }
     })
-/*     console.log('update', update)
-    res.status(200).json("home"); */
-    // req.body.loginUser;
+  
   },
   delMovie: (req, res) => {
     res.status(200).render("home");
