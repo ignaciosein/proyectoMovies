@@ -30,9 +30,7 @@ const logica = {
         let resultM = await  Movies.find()
         /* console.log(resultM) */
         return resultM //query para crear un usuario en la BBDD
-    },
-    
-    
+    }
 }
 
 module.exports = logica

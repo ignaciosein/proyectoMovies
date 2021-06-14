@@ -1,15 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
-
-const Movies = require("../models/schemas")
-
-
-require("dotenv").config();
-const cookieParser = require("cookie-parser");
 const apiKey = process.env.APIKEY;
-
-
-
+const Movies = require("../models/schemas");
 
 const pages = {
   home: (req, res) => {
@@ -65,26 +57,18 @@ const pages = {
   },
   postSearch: async (req, res) => {
     let movie = req.body.peliculaBuscar;
-
     let data = await pelis.getMovie(
       `http://www.omdbapi.com/?s=${movie}&apikey=${apiKey}`
     );
-
     let arrayVacio = [];
-
     for (let index = 0; index < data.Search.length; index++) {
       let idDePelis = data.Search[index].imdbID;
-
       let data2 = await pelis.getMovie(
         `http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`
       );
-
       let array = await arrayVacio.push(data2);
     }
-
-
     /* console.log(arrayVacio.Ratings[0].Value); */ //// PARA ACCEDER A LOS RATINGS DE LAS PELICULAS
-
     res.status(200).render("search", { arrayVacio });
   },
   getMovies: async (req, res) => {
@@ -145,18 +129,17 @@ const pages = {
     let data2 = await pelis.getMovie(
       `http://www.omdbapi.com/?i=${peliculaname}&apikey=${apiKey}`
     );
-
     console.log(data2);
 
-    res.status(200).render("searchAllDetails", data2);
-    // req.body.loginUser;
-  },
-  getMovies: async (req, res) => {
-    let tituloDePelicula = req.params.title;
-    let data = await pelis.getMovie(
-      `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
-    );
-    res.status(200).render("film", data);
+      res.status(200).render("searchAllDetails", data2);
+      // req.body.loginUser;
+    },
+    getMovies: async (req, res) => {
+      let tituloDePelicula = req.params.title;
+      let data = await pelis.getMovie(
+        `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
+      );
+      res.status(200).render("film", data);
   },
   getLocalMovies: async (req, res) => {
     let resultM = await logica.loadlLocalMovies();
