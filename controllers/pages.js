@@ -1,7 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
+const Movies = require("../models/schemas")
 const apiKey = process.env.APIKEY;
-const Movies = require("../models/schemas");
 
 const pages = {
   home: (req, res) => {
@@ -88,12 +88,16 @@ const pages = {
       Runtime: req.body.duration,
       Poster: req.body.image
     })
-    let result = await await movie.save((err) => {
-      if (err) {
-        let mError = err.message.split(':')[0]
-        res.status(400).render("message", { type: "Error: ", message: `${mError}`, link: req.url, flag: true })
-      } else {
-        res.status(200).render("message", { type: "Info: ", message: `Información introducida correctamente`, link: req.url, flag: true })
+    let result = await movie.save((err) => {
+      try {
+        if (err) {
+          let mError = err.message.split(':')[0]
+          res.status(400).render("message", { type: "Error: ", message: `${mError}`, link: req.url, flag: true })
+        } else {
+          res.status(200).render("message", { type: "Info: ", message: `Información introducida correctamente`, link: req.url, flag: true })
+        }
+      }catch(error){
+        res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
       }
     })
   },
@@ -149,19 +153,31 @@ const pages = {
     res.status(200).render("home");
     // req.body.loginUser;
   },
-  putMovie: (req, res) => {
-
-    res.status(200).render("editMovie");
-    // req.body.loginUser;
+  putMovie: async(req, res) => {
+    let data = req.body 
+    let update = await Movies.findOneAndUpdate({IdPelicula: data.IdPelicula}, data, (err,data)=>{
+      try{
+        if(err){
+          res.status(400).render("message", { type: "Error: ", message: `Error`, link: req.url, flag: true })
+         }else{
+          console.log('DATA', data)
+          res.redirect(303,'/admin')
+         }
+      }catch(error){
+        res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
+      }
+    })
+  
   },
   delMovie: (req, res) => {
     res.status(200).render("home");
     // req.body.loginUser;
   },
-  getEditMovie: (req,res)=>{
-    let data = req.query.Id
-    console.log(data)
-    /* res.status(200).render('editMovie',{data}); */
+  getEditMovie: async(req,res)=>{
+    let id = parseInt(req.query.data)
+    let data = await logica.findOneLocalMovies(id)
+    res.status(200).render('editMovie',{data});
+    /* res.status(200).send(data); */
   }
 };
 
