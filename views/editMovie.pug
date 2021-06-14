@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+  body
+    h2 EDITAR PELICULA
+    p #{data.Title}
+    form#formCreateMovie(action=`/createMovie?id=${data.id}` method="PUT")
+      input#title(type='text' placeholder='Título' name="title" value= data.Title required)
+      br
+      input#year(type='text' placeholder='Año' name="year" value=data.Year required)
+      br
+      input#director(type='text' placeholder='Director' name="director" value=data.Year required)
+      br
+      input#gender(type='text' placeholder='Género' name="gender" value=data.Genre required)
+      br
+      input#duration(type='text' placeholder='Duración' name="duration" value=data.Runtime required)
+      br
+      input#image(type='text' placeholder='Imagen' name="image" value=data.Poster required)
+      br
+      button.boton1(type='submit') EDITAR
+      br
+      a(href=`../admin`) VOLVER AL PANEL DE ADMINISTRADOR
+  
