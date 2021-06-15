@@ -1,6 +1,8 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
+const scrap = require('../utils/opinions')
 const Movies = require("../models/schemas")
+
 const apiKey = process.env.APIKEY;
 
 const user = {
@@ -47,7 +49,23 @@ const user = {
     },
     getFavUserMovies: async (req, res) => {
         res.status(200).send('peliculas favoritas');
-    }
+    },
+    getData: async (req, res) => {
+        try{
+            const result = await scrap()
+            console.log("result en getData", result)
+            res.status(200).json({
+                success: true,
+                data: result
+            })
+        } catch (err) {
+            console.log(err.message)
+            res.status(500).json({
+                success: false,
+                message: err.message
+            })
+        }
+    },
 }
 
 module.exports = user;
