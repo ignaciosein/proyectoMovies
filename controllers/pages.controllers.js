@@ -52,14 +52,16 @@ const pages = {
       let conn; 
       try {
           conn = await pool.getConnection();
-          const response = await conn.query("INSERT INTO movieproject.users (name,email,password) value (?,?,?)",[user.name,user.email,user.password]);
-          console.log('res',response);
-          if(response.affectedRows==1){
+          const result = await conn.query("INSERT INTO movieproject.users (name,email,password) value (?,?,?)",[user.name,user.email,user.password]);
+          console.log('res',result);
+          if(result.affectedRows==1){
             res.status(200).render('message',{ type: "Info: ", message: "Usuario creado correctamente", link:'/dashboard', flag: true })
+          }else{
+            res.status(400).render('message',{ type: "Error: ", message: "No se puede crear el usuario, inténtelo más tarde.", link: '/', flag: true }) 
           }
         } catch (err) {
           console.log(err)
-          res.status(400).render('message',{ type: "Error: ", message: "No se puede crear el usuario, inténtelo más tarde.", link: '/', flag: true })  
+          res.status(500).render('message',{ type: "Error: ", message: "Fallo en el servidor", link: '/', flag: true }) 
         } finally {
           if (conn) return conn.end();
         }
