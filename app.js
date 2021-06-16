@@ -47,8 +47,14 @@ app.get("/auth/twitter", passport.authenticate("twitter"));
 // OAUTH FACEBOOK
 app.get("/auth/facebook", passport.authenticate("facebook"));
 
+
+
 // OAUTH GOOGLE
-app.get('/auth/google',passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+app.get('/auth/google',passport.authenticate('google', { 
+  scope: ['https://www.googleapis.com/auth/plus.login',
+        'https://www.googleapis.com/auth/userinfo.profile', 
+        'https://www.googleapis.com/auth/userinfo.email'] 
+}));
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),

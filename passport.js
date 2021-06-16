@@ -83,6 +83,7 @@ passport.use(new GoogleStrategy({
   
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
+    console.log(profile.emails[0].value);
     const usuario = new User ({
         googleId: profile.id,
         name: profile.displayName,
