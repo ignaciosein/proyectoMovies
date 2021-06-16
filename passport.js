@@ -83,11 +83,25 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
       
-       User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        
+/*        User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return done(err, user);
-       });
+       }); */
+       const usuario = new User ({
+            googleId: profile.id,
+            name: profile.displayName,
+            provider: profile.provider,
+            photo: profile.photos[0].value,
+       })
+
+    let createUserGoogle = async () =>{ 
+        const newUser = await usuario.save((err,data));
+        return newUser
+     }
+     createUserGoogle()
+     .then(x => console.log(x))
+     return done(err, user);
     }
+    
 ))
 
 module.exports = passport;
