@@ -21,7 +21,6 @@ editForm.addEventListener('submit',(e)=>{
     }
 
     let putMethod = async(url, data)=>{
-        console.log("url", url)
         let response = await fetch(url,{
             method: 'PUT',
             body: JSON.stringify(data),

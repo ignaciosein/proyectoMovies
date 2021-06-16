@@ -3,10 +3,11 @@ const pages = require("../controllers/pages.controllers")
 const user = require("../controllers/user.controllers")
 const admin = require('../controllers/admin.controllers')
 
-//Ruta de inicio
+//Rutas de inicio
 router.get("/", pages.home);
 router.post("/", pages.postLogin)
 router.post("/login", pages.postLogin)
+router.post("/singUp", pages.postSingUp)
 
 //Rutas user 
 router.get("/dashboard", user.getDashboard)

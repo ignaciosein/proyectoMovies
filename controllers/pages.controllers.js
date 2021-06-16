@@ -3,6 +3,14 @@ const pelis = require("../utils/pelis");
 const Movies = require("../models/schemas")
 const apiKey = process.env.APIKEY;
 
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({
+    host: 'localhost', 
+    user:'root',
+    database: 'movieproject', 
+    connectionLimit: 5});
+
+
 const pages = {
   home: (req, res) => {
     res.status(200).render("home");
@@ -26,29 +34,38 @@ const pages = {
         }
       } else {
         /* res.status(400).send('Aqui va el ERROR del TOKEN') */
-        res.status(200).render("message", { tipo: "Error", message: "Se ha producido un error al generar el token", link: req.url, flag: true })
+        res.status(200).render("message", { type: "Error", message: "Se ha producido un error al generar el token", link: req.url, flag: true })
       }
     } else {
       /* res.status(400).send('USAURIO NO EXISTE') */ //redireccionar a la plantilla de registro
-      res.status(200).render("message", { tipo: "Error", message: "Usuario password incorrecta", link: req.url, flag: true })
+      res.status(200).render("message", { type: "Error", message: "Usuario password incorrecta", link: req.url, flag: true })
     }
   },
-  postSingUp: (req, res) => {
+  postSingUp: async (req, res) => {
     const user = {
-      user: req.body.loginUser,
-      email: req.body.emailUser,
-      password: req.body.loginPasswordUser
-    }
-    console.log(user.user)
+      name: req.body.singUpUser,
+      email: req.body.singUpEmail,
+      password: logica.cryptoW(req.body.singUpPass),
+      repassword: logica.cryptoW(req.body.singUpRePass)
+    }   
     if (!logica.getUser(user)) {
-      if (logica.createUser(user)) {
-        //si todo va bien se devuelve la página de inicio del usuario
-        res.status(200).send('Usuario no existe OOKKK')
-      } else {
-        res.status(400).send('ERROR AL CREAR EL USUARIO')
-      }
+      let conn; 
+      try {
+          conn = await pool.getConnection();
+          const response = await conn.query("INSERT INTO movieproject.users (name,email,password) value (?,?,?)",[user.name,user.email,user.password]);
+          console.log('res',response);
+          if(response.affectedRows==1){
+            res.status(200).render('message',{ type: "Info: ", message: "Usuario creado correctamente", link:'/dashboard', flag: true })
+          }
+        } catch (err) {
+          console.log(err)
+          res.status(400).render('message',{ type: "Error: ", message: "No se puede crear el usuario, inténtelo más tarde.", link: '/', flag: true })  
+        } finally {
+          if (conn) return conn.end();
+        }
     } else {
-      res.status(400).send('USAURIO YA EXISTE')
+      /* res.status(400).send('USAURIO YA EXISTE') */
+      res.status(400).render('message',{ type: "Error: ", message: "El usuario ya existe", link: req.url, flag: true })
     }
   }
 };
