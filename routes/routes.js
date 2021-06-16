@@ -23,6 +23,6 @@ router.get("/createMovie", admin.getCreateMovie)
 router.post("/createMovie", admin.postCreateMovie)
 router.get("/editMovie", admin.getEditMovie)
 router.put("/editMovie/:id", admin.putMovie)
-router.get("/deleteFilm/:title", admin.deleteMovie)
+router.delete("/deleteFilm/:title", admin.deleteMovie)
  
 module.exports = router;

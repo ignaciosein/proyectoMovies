@@ -55,13 +55,14 @@ const admin = {
         }
     },
     deleteMovie: (req, res) => {
-        Movies.findOneAndRemove({ title: req.params.Title }, function (err) {
+        console.log(req)
+/*         Movies.findOneAndRemove({ title: req.params.Title }, function (err) {
             if (err) {
                 console.log(err)
             } else {
                 res.status(200).render("deleteFilm");
             }
-        });
+        }); */
     }
 }
 
