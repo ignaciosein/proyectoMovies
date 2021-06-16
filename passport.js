@@ -8,13 +8,14 @@ const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
 //************GUARDAR USUARIO EN LA SESION************
-// module.exports = function(passport){
-//     passport.serializeUser(function(user, done){
-//         done(null, user);
-//     });
-//     passport.deserializeUser(function(obj, done){
-//         done(null, obj);
-//     })}
+/* function(passport){ */
+     passport.serializeUser(function(user, done){
+         done(null, user);
+     });
+     passport.deserializeUser(function(obj, done){
+         done(null, obj);
+     })
+   /*  }  */
 
 //************AUTENTICADO CON TWITTER************
 // passport.use(new TwitterStrategy({
@@ -82,26 +83,16 @@ passport.use(new GoogleStrategy({
   
   function(accessToken, refreshToken, profile, done) {
     console.log(profile);
-      
-/*        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    const usuario = new User ({
+        googleId: profile.id,
+        name: profile.displayName,
+        provider: profile.provider,
+        photo: profile.photos[0].value,
+   })
+       usuario.save(function (err, user) {
         return done(err, user);
-       }); */
-       const usuario = new User ({
-            googleId: profile.id,
-            name: profile.displayName,
-            provider: profile.provider,
-            photo: profile.photos[0].value,
-       })
-
-    let createUserGoogle = async () =>{ 
-        const newUser = await usuario.save((err,data));
-        return newUser
-     }
-     createUserGoogle()
-     .then(x => console.log(x))
-     return done(err, user);
+       });
     }
-    
 ))
 
 module.exports = passport;
