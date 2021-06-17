@@ -6,9 +6,9 @@ const Schema = mongoose.Schema;
 // db.once("open", () => console.log("connection to db established"));
 
 const UserSchema = new Schema({
+    googleId: String,
     name       : String,
     provider   : String,
-    provider_id: {type: String, unique: true},
     photo      : String,
     createdAt  : {type: Date, default: Date.now}
 });
