@@ -42,10 +42,10 @@ app.get("/logout", function(req,res){
     res.redirect("/");
 })
 // OAUTH TWITTER
-app.get("/auth/twitter", passport.authenticate("twitter"));
+// app.get("/auth/twitter", passport.authenticate("twitter"));
 
 // OAUTH FACEBOOK
-app.get("/auth/facebook", passport.authenticate("facebook"));
+// app.get("/auth/facebook", passport.authenticate("facebook"));
 
 // OAUTH GOOGLE
 app.get('/auth/google',

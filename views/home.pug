@@ -8,15 +8,16 @@ html(lang='en')
     link(rel='stylesheet' href='../Public/CSS/style.css')
   body.divHome
     h1 HOME
-      | FORMULARIO DE LOGIN
+      br
+      h2 LOG IN
       form#formLogin(action="/" method="POST")
         input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
-        
+        br
         input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
-         
-        button(type='submit' name='SubmitLogUser' ) ENVIAR
+        br
+        button(type='submit' name='SubmitLogUser' ) LOG IN
     
-    p Aún no lo estas?
+    h2  SIGN UP
     input#email.input(type='text' placeholder='Introduce tu Email...' required)
     br
     input#password.input(type='text' placeholder='Nueva contraseña...' required)
@@ -24,7 +25,7 @@ html(lang='en')
     input#password.input(type='text' placeholder='Repite tu contraseña...' required)
     br
     a(href='/auth/google') Sign In with Google
-    a(href='/auth/twitter') Sign In with Twitter 
-    a(href='/auth/facebook') Sign In with Facebook
+    //- a(href='/auth/twitter') Sign In with Twitter 
+    //- a(href='/auth/facebook') Sign In with Facebook
     br
     button.boton1(type='submit') SIGN UP

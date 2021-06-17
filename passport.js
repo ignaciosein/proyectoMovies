@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
-const User1 = mongoose.model("User");
-const TwitterStrategy = require("passport-twitter").Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
+// const User1 = mongoose.model("User");
+// const TwitterStrategy = require("passport-twitter").Strategy;
+// const FacebookStrategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const passport = require('passport');
 const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
-//************GUARDAR USUARIO EN LA SESION************
-// module.exports = function(passport){
-//     passport.serializeUser(function(user, done){
-//         done(null, user);
-//     });
-//     passport.deserializeUser(function(obj, done){
-//         done(null, obj);
-//     })}
+// ************GUARDAR USUARIO EN LA SESION************
+module.exports = function(passport){
+    passport.serializeUser(function(user, done){
+        done(null, user);
+    });
+    passport.deserializeUser(function(obj, done){
+        done(null, obj);
+    })}
 
 //************AUTENTICADO CON TWITTER************
 // passport.use(new TwitterStrategy({
@@ -48,13 +48,11 @@ const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 //     callbackURL     :"/auth/facebook/callback",
 //     profileFields/*no PHOTO*/   :["id", "displayName", "provider", "photos"],
 // function(accessToken, refreshToken, profile, done){
- 
 //         User.findOne({provider_id: profile.id}, function(err, user){
 //             if(err) throw(err);
 //             if(!err && user!=null)
 //             return done(null, user);
 //         })
-
 //     const user = new User({
 //         provider_id     :profile.id,
 //         provider        :profile.provider,
@@ -70,6 +68,9 @@ const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
 
 
+
+
+
 //   Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
@@ -81,9 +82,8 @@ passport.use(new GoogleStrategy({
   },
   
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-      
-       User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    
+       User.find({ googleId: profile.id }, function (err, user) {
         
         return done(err, user);
        });
