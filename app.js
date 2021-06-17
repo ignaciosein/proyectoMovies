@@ -42,11 +42,6 @@ app.get("/logout", function(req,res){
     req.logout();
     res.redirect("/");
 })
-// OAUTH TWITTER
-app.get("/auth/twitter", passport.authenticate("twitter"));
-
-// OAUTH FACEBOOK
-app.get("/auth/facebook", passport.authenticate("facebook"));
 
 app.get('/otra', (req,res)=>{
   res.status(200).render('createPeli')
