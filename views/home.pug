@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+    link(rel='stylesheet' href='../Public/CSS/style.css')
+    script(src='../Public/js/user.js' defer)
+  body.divHome
+    h1 HOME
+    h1 FORMULARIO DE LOGIN
+    form#formLogin(action="/" method="POST")
+      input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
+      input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
+      button(type='submit' name='SubmitLogUser' ) Enviar
+    #TituloH1
+      h1 SingUp
+    #errorMsg
+    form#formSingUp(action="/singUp" method="POST")
+      input#name(type='text' placeholder='Introduce tu nombre' name='singUpUser' required)
+      br
+      input#email(type='email' placeholder='Introduce tu email' name='singUpEmail' required)
+      br
+      input#password(type='password' placeholder='Introduce tu contraseña' name='singUpPass' required)
+      br
+      input#repassword(type='password' placeholder='Repite tu contraseña' name='singUpRePass' required)
+      br
+      button#singUpButton(type='submit' name="singUpButton") Aceptar
+
+    if flag == true
+        .box
+            .box-cont
+                span Mensaje:
+                p#resultado #{message}
+                br
+                a#oka(href=link) Aceptar
+    else 
+        .boxNone
+            .box-cont
+                p#resultado #{message}
+                br
+                a#oka(href=link) Aceptar
