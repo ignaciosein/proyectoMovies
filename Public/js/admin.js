@@ -1,16 +1,11 @@
- if(document.getElementById("deleteMovie")){
-
-    
-
  
+ 
+ function remove(title){
 
-document.getElementById('deleteMovie').addEventListener('click',()=>{
-
-    alert("has pulsado el boton")
-
-    let title = document.getElementById('titleMovie').innerHTML;
+  
+ 
     
-    alert(title)
+   
     let deleteMethod = async(title)=>{
         let response = await fetch(`http://localhost:3000/deleteFilm/${title}`,{
             method: 'DELETE',
@@ -30,9 +25,9 @@ document.getElementById('deleteMovie').addEventListener('click',()=>{
     })
      .catch((error) => console.log(error))
     
+  
  
-       
+
+ }
  
-    
-})
-}
+ 

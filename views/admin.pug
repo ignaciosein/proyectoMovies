@@ -26,6 +26,6 @@ html(lang='en')
                 p Genero: #{result.Genre}
                 img#Poster(src=result.Poster)
                 a(href=`#`)
-                  button#deleteMovie(type='button' name="deleteButton") Eliminar
+                  button#deleteMovie(type='button' onclick="remove('" + result.Title + "')" name="deleteButton") Eliminar
                 a(href=`/editMovie/?data=${result.IdMovie}`)
                   button#editMovieButton(type='button') Editar
