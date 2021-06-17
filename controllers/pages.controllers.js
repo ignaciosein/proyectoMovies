@@ -3,14 +3,6 @@ const pelis = require("../utils/pelis");
 const Movies = require("../models/schemas")
 const apiKey = process.env.APIKEY;
 
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: 'localhost', 
-    user:'root',
-    database: 'movieproject', 
-    connectionLimit: 5});
-
-
 const pages = {
   home: (req, res) => {
     res.status(200).render("home");
@@ -48,27 +40,11 @@ const pages = {
       password: logica.cryptoW(req.body.singUpPass),
       repassword: logica.cryptoW(req.body.singUpRePass)
     }   
-    if (!logica.getUser(user)) {
+    /* if (!logica.getUser(user)) {
       let conn; 
-      try {
-          conn = await pool.getConnection();
-          const result = await conn.query("INSERT INTO movieproject.users (name,email,password) value (?,?,?)",[user.name,user.email,user.password]);
-          console.log('res',result);
-          if(result.affectedRows==1){
-            res.status(200).render('message',{ type: "Info: ", message: "Usuario creado correctamente", link:'/dashboard', flag: true })
-          }else{
-            res.status(400).render('message',{ type: "Error: ", message: "No se puede crear el usuario, inténtelo más tarde.", link: '/', flag: true }) 
-          }
-        } catch (err) {
-          console.log(err)
-          res.status(500).render('message',{ type: "Error: ", message: "Fallo en el servidor", link: '/', flag: true }) 
-        } finally {
-          if (conn) return conn.end();
-        }
     } else {
-      /* res.status(400).send('USAURIO YA EXISTE') */
       res.status(400).render('message',{ type: "Error: ", message: "El usuario ya existe", link: req.url, flag: true })
-    }
+    } */
   }
 };
 
