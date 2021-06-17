@@ -1,23 +1,27 @@
 const router = require("express").Router();
-const pages = require("../controllers/pages")
+const pages = require("../controllers/pages.controllers")
+const user = require("../controllers/user.controllers")
+const admin = require('../controllers/admin.controllers')
 
+//Ruta de inicio
 router.get("/", pages.home);
 router.post("/", pages.postLogin)
- 
- 
-router.get("/dashboard", pages.getDashboard)
-router.post("/search", pages.postSearch)
-router.get("/search", pages.getSearch)
-router.get("/search/:title", pages.getSearchTitle)
-router.get("/movies", pages.getMovies)
-
 router.post("/login", pages.postLogin)
 
-router.get("/createMovie", pages.getCreateMovie)
-router.post("/createMovie", pages.postCreateMovie)
-
-router.put("/editMovie/:id", pages.putMovie)
-
-router.delete("/editMovie/:id", pages.delMovie)
-
+//Rutas user 
+router.get("/dashboard", user.getDashboard)
+router.get("/movies", user.getMovies)
+router.post("/search", user.postSearch)
+router.get("/search", user.getSearch)
+router.get("/search/:title", user.getSearchTitle)
+router.get("/favMovies",user.getFavUserMovies)
+ 
+//Rutas admin
+router.get("/admin", admin.getLocalMovies)
+router.get("/createMovie", admin.getCreateMovie)
+router.post("/createMovie", admin.postCreateMovie)
+router.get("/editMovie", admin.getEditMovie)
+router.put("/editMovie/:id", admin.putMovie)
+router.get("/deleteFilm/:title", admin.deleteMovie)
+ 
 module.exports = router;

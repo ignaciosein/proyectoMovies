@@ -24,8 +24,9 @@ const logica = {
         return (data.user == usurioDB.name)
     },
     createUser : (data) =>{
-        return true //query para crear un usuario en la BBDD
+        return true 
     },
+<<<<<<< HEAD
     saveMovie: async (data)=>{
         const movie = new Movies({
             title: data.title,
@@ -56,6 +57,16 @@ const logica = {
             return false
           }
     } */
+=======
+    loadlLocalMovies:async () =>{
+        let resultM = await  Movies.find()
+        return resultM 
+    },
+    findOneLocalMovies: async (id) =>{
+        let resultOne = await  Movies.find({IdMovie: `${id}`})
+        return resultOne
+    }
+>>>>>>> ac646062618f0aec9b983b93789e5a5e899d5931
 }
 
 module.exports = logica
