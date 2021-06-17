@@ -1,11 +1,11 @@
-const mariadb = require('mariadb');
+/* const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: 'localhost', 
     user:'root',
     database:'movieProject', 
     connectionLimit: 5
 });
-
+ */
 /* async function sendMessage(message) {
     let conn;
     try {

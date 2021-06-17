@@ -8,23 +8,73 @@ const pool = mariadb.createPool({
 );
 
 const userMySQL = {
-    createUser : async(user) =>{
+    createUser : async(data) =>{
         let conn;
         let result;
         try {
             conn = await pool.getConnection();
-            result = await conn.query("INSERT INTO users (name,email,password,token) value (?,?,?,?)",[user.name,user.email,user.password,user.token]);
-            console.log('result',result);
-/*             if(result.affectedRows==1){
-                res.status(200).render('message',{ type: "Info: ", message: "Usuario creado correctamente", link:'/dashboard', flag: true })
-            }else{
-                res.status(400).render('message',{ type: "Error: ", message: "No se puede crear el usuario, inténtelo más tarde.", link: '/', flag: true }) 
-            } */
+            let sqlQuery = ("INSERT INTO users value (?,?,?,?,?)")
+            result = await conn.query(sqlQuery,data);
+            /* console.log('result',result); */
+        } catch (err) {
+            result = {codeError: err.code, numError: err.errno}
+            console.log(err)
+        } finally {
+            if (conn) conn.end();
+        }
+        return result
+    },
+    existUser : async (email) =>{
+        let conn;
+        let result;
+        try {
+            conn = await pool.getConnection();
+            let sqlQuery = ("select email from users where email=?")
+            result = await conn.query(sqlQuery,email);
+            result = result[0]
+            /* console.log('resultUserExiste',result); */
+        } catch (err) {
+            result = {codeError: err.code, numError: err.errno}
+            /* console.log(result) */
+        } finally {
+            if (conn) conn.end();
+        }
+        return result
+    },
+    getRowUser: async(email)=>{
+        let conn;
+        let result;
+        try {
+            conn = await pool.getConnection();
+            let sqlQuery = ("select * from users where email=?")
+            result = await conn.query(sqlQuery,email);
+            result = result[0]
+            /* console.log('resultUserExiste',result); */
+        } catch (err) {
+            result = {codeError: err.code, numError: err.errno}
+            /* console.log(result) */
+        } finally {
+            if (conn) conn.end();
+        }
+        return result      
+    },
+    insertNewToken: async(email,token)=>{
+        let conn;
+        let result;
+        try {
+            conn = await pool.getConnection();
+            let sqlQuery = ("update users set token=? where email=?")
+            result = await conn.query(sqlQuery,[token,email]);
+            /* console.log(result) */
         } catch (err) {
             console.log(err)
-           /*  res.status(500).render('message',{ type: "Error: ", message: "Falla la creacion del usuario", link: '/', flag: true })  */
+            result = {codeError: err.code, numError: err.errno}
+            /* console.log(result)  */
         } finally {
-            if (conn) return conn.end();
+            if (conn) conn.end();
         }
+        return result  
     }
 }
+
+module.exports = userMySQL
