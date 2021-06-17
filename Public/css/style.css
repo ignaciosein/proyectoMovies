@@ -68,3 +68,6 @@ span {
     background-color: #008CBA;
     cursor: pointer;
 }
+.errorColor{
+    color: red;
+}

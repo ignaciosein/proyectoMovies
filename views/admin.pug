@@ -19,13 +19,13 @@ html(lang='en')
         for result in resultM 
           a(href=`search/${result.Title}`)
              .paintFilms 
-                h1 #{result.Title}
+                h1#titleMovie #{result.Title}
                 p Año: #{result.Year}
                 p Director: #{result.Director}
                 p Duración: #{result.Runtime}
                 p Genero: #{result.Genre}
                 img#Poster(src=result.Poster)
-                a(href=`deleteFilm/${result.Title}`)
-                  button#deleteMovie(type='button') Eliminar
+                a(href=`#`)
+                  button#deleteMovie(type='button' onclick="remove('" + result.Title + "')" name="deleteButton") Eliminar
                 a(href=`/editMovie/?data=${result.IdMovie}`)
                   button#editMovieButton(type='button') Editar

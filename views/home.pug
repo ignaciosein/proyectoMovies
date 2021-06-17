@@ -6,22 +6,27 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Document
     link(rel='stylesheet' href='../Public/CSS/style.css')
+    script(src='../Public/js/user.js' defer)
   body.divHome
     h1 HOME
-      | FORMULARIO DE LOGIN
-      form#formLogin(action="/" method="POST")
-        input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
-        input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
-        button(type='submit' name='SubmitLogUser' ) ENVIAR
-    
-    p Aún no lo estas?
-    input#email.input(type='text' placeholder='Introduce tu Email...' required)
-    br
-    input#password.input(type='text' placeholder='Nueva contraseña...' required)
-    br
-    input#password.input(type='text' placeholder='Repite tu contraseña...' required)
-    br
-    button.boton1(type='submit') SIGN UP
+    h1 FORMULARIO DE LOGIN
+    form#formLogin(action="/" method="POST")
+      input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
+      input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
+      button(type='submit' name='SubmitLogUser' ) Enviar
+    #TituloH1
+      h1 SingUp
+    #errorMsg
+    form#formSingUp(action="/singUp" method="POST")
+      input#name(type='text' placeholder='Introduce tu nombre' name='singUpUser' required)
+      br
+      input#email(type='email' placeholder='Introduce tu email' name='singUpEmail' required)
+      br
+      input#password(type='password' placeholder='Introduce tu contraseña' name='singUpPass' required)
+      br
+      input#repassword(type='password' placeholder='Repite tu contraseña' name='singUpRePass' required)
+      br
+      button#singUpButton(type='submit' name="singUpButton") Aceptar
 
     if flag == true
         .box
