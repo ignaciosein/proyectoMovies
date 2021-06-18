@@ -16,5 +16,8 @@ html(lang='en')
              li Director: #{Director}   
              li Duración: '#{Runtime} 
              li Género: '#{Genre} 
+             li CODIFO : '#{imdbID}'
              img(src=Poster)
+             a(href=`/favMovies/${imdbID}/${Title}`) AGREGAR A FAVORITOS
+
              
