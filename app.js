@@ -8,14 +8,9 @@ const PORT = process.env.PORT || 3000;
 app.use("/Public", express.static('Public'));
 const cookieParser = require('cookie-parser');
 
-// LOGIN
-// var express = require('express');
-// var app = express();
-// var session = require('express-session');
-//REQ LOGIN RRSS
 const passport = require("./passport");
 const { response } = require("express");
-// require("./passport")(passport);
+
 
 app.use(cookieParser())
 
@@ -37,13 +32,13 @@ db.once("open", () => console.log("connection to db established"));
 
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(app.router);
+
 app.get("/logout", function(req,res){
     req.logout();
     res.redirect("/");
 })
 
-app.get('/otra', (req,res)=>{
+app.get('/otra',(req,res)=>{
   res.status(200).render('createPeli')
 })
 
@@ -54,13 +49,13 @@ app.get('/auth/google',passport.authenticate('google', {
         'https://www.googleapis.com/auth/userinfo.email'] 
 }));
 
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
+
+
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
 
     res.redirect('/');
   });
-
-  app.listen(PORT, ()=>{
+console.log(passport.authenticate())
+app.listen(PORT, ()=>{
     console.log(`EJEMPLO http://localhost:${PORT}`);
 })

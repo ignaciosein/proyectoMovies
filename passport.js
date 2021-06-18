@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-const User1 = mongoose.model("User");
-const TwitterStrategy = require("passport-twitter").Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 const passport = require('passport');
 const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
@@ -81,9 +79,12 @@ passport.use(new GoogleStrategy({
     callbackURL: config.google.OAUTH2_CALLBACK
   },
   
+
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    console.log(profile.emails[0].value);
+    console.log('accessTOKEN: ', accessToken)
+    console.log('refressToken:', refreshToken)
+/*     console.log(profile);
+    console.log(profile.emails[0].value); */
     const usuario = new User ({
         googleId: profile.id,
         name: profile.displayName,
