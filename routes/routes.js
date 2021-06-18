@@ -16,6 +16,7 @@ router.post("/search", user.postSearch)
 router.get("/search", user.getSearch)
 router.get("/search/:title", user.getSearchTitle)
 router.get("/favMovies",user.getFavUserMovies)
+router.get("/favMovies/:movieId/:Title",user.addFavUserMovies)
  
 //Rutas admin
 router.get("/admin", admin.getLocalMovies)
