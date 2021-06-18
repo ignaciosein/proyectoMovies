@@ -46,7 +46,7 @@ const pages = {
                           console.log('numError: ' ,updateToken)
                           res.status(500).render('message',{ type: "Error: ", message: "No se puede escribir la autenticacion, intentelo más tarde", link: '/', flag: true }) 
                         }else{
-                          res.cookie('token',newToken).status(200).render('dashboard') 
+                          data.admin==0?res.cookie('token',newToken).status(200).render('dashboard'):res.cookie('token',newToken).status(200).render('admin')
                         }
                       }
                     }catch(err){
