@@ -65,3 +65,11 @@ box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.57);
 
      
 }
+#star{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40%;
+    margin-top: 10%;
+    width: 10%
+    
+}
