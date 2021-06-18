@@ -31,7 +31,7 @@ const pages = {
                   res.status(500).render('message',{ type: "Error: ", message: "No se puede ejecutar la accíon de autenticar, intentelo más tarde", link: '/', flag: true })
                 }else{
                   if (resp){
-                    let newToken = logica.generateToken(user.mail,data.admin)
+                    let newToken = logica.generateToken(user.email,data.admin)
                     let updateResult = async() =>{
                       let result = await userMySQL.insertNewToken(user.email,newToken)
                       return result
