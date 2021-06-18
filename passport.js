@@ -15,64 +15,6 @@ const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
      })
    /*  }  */
 
-//************AUTENTICADO CON TWITTER************
-// passport.use(new TwitterStrategy({
-//     consumerKey     : config.twitter.key,
-//     consumerSecret  : config.twitter.secret,
-//     callbackURL     : "/auth/twitter/callback"
-// }, function(accessToken, refreshToken, profile, done){
-//************FINDONE BUSCA USUARIO EN BBDD POR ID, Y SI NO EXISTE, LO CREA************
-    // User.findOne({provider_id: profile.id}, function(err, user){
-    // if(err) throw(err);
-    // if(!err && user!=null) 
-    // return done(null, user);
-//************GUARDA EL USER EN BBDD************
-    // const user1 = new User1({
-    //     provider_id : profile.id,
-    //     provider    : profile.provider,
-    //     name        : profile.displayName,
-    //     photo       : profile.photos[0].value
-    // });
-    // user.save(function(err){
-    //     if(err) throw err;
-    //     done(null, user);
-    // });
-// });
-// }))};
-
-// ************AUTENTICADO CON FACEBOOK************
-// passport.use(new FacebookStrategy({
-//     clientID        :config.facebook.id,
-//     clientSecret    :config.facebook.secret,
-//     callbackURL     :"/auth/facebook/callback",
-//     profileFields/*no PHOTO*/   :["id", "displayName", "provider", "photos"],
-// function(accessToken, refreshToken, profile, done){
- 
-//         User.findOne({provider_id: profile.id}, function(err, user){
-//             if(err) throw(err);
-//             if(!err && user!=null)
-//             return done(null, user);
-//         })
-
-//     const user = new User({
-//         provider_id     :profile.id,
-//         provider        :profile.provider,
-//         name            :profile.displayName,
-//         photo           :profile.photos[0].value
-//     });
-//     user.save(function(err){
-//         if(err) throw err;
-//         done(null, user);
-//     }
-//     )}
-// }))
-
-
-
-//   Use the GoogleStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Google
-//   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
     clientID: config.google.OAUTH2_CLIENT_ID,
     clientSecret: config.google.OAUTH2_CLIENT_SECRET,
