@@ -39,6 +39,7 @@ app.get("/logout", function(req,res){
 })
 
 app.get('/otra',(req,res)=>{
+  console.log(req)
   res.status(200).render('createPeli')
 })
 
@@ -52,7 +53,7 @@ app.get('/auth/google',passport.authenticate('google', {
 
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-
+  console.log(req)
     res.redirect('/');
   });
 console.log(passport.authenticate())
