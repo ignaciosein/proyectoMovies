@@ -4,12 +4,18 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Document
+    title User 
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap' rel='stylesheet')
+    link(rel='stylesheet' href='../Public/CSS/style.css')
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600;800&display=swap' rel='stylesheet')
+
   body
     h1 USER
     input#searchFilm(type='text' placeholder='Buscar Película' required)
     button.boton1(type='submit') BUSCAR
     br
-    button.boton1(type='submit') Películas Favoritas
+    button.boton2(type='submit') Películas Favoritas
     br
-    button.boton1(type='submit') LOG OUT
+    button.botonLogOut(type='submit') LOG OUT

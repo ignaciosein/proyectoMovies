@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>EDITAR PELÍCULA</h1>
-
-    <div>DIV DE IMAGEN</div>
-    <input type="text" id="title" placeholder="Título" required><br>
-    <input type="text" id="year" placeholder="Año" required><br>
-    <input type="text" id="director" placeholder="Director" required><br>
-    <input type="text" id="gender" placeholder="Género" required><br>
-    <input type="text" id="duration" placeholder="Duración" required><br>
-    <button type="submit" class="boton1">EDITAR</button>
-
-</body>
-</html>
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap' rel='stylesheet')
+    link(rel='stylesheet' href='../Public/CSS/style.css')
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600;800&display=swap' rel='stylesheet')
+  body
+    h1 EDITAR PELÍCULA
+    div DIV DE IMAGEN
+    input#title(type='text' placeholder='Título' required='')
+    br
+    input#year(type='text' placeholder='Año' required='')
+    br
+    input#director(type='text' placeholder='Director' required='')
+    br
+    input#gender(type='text' placeholder='Género' required='')
+    br
+    input#duration(type='text' placeholder='Duración' required='')
+    br
+    button.boton1(type='submit') EDITAR

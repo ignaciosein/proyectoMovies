@@ -7,29 +7,25 @@ const passport = require('passport');
 const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
-
-//************GUARDAR USUARIO EN LA SESION************
-/* function(passport){ */
-     passport.serializeUser(function(user, done){
+//************************************************************************************************************************GUARDAR USUARIO EN LA SESION, Y LO  BORRA************************************************************************************************************************
+     passport.serializeUser(function(usr, done){
          done(null, user);
      });
      passport.deserializeUser(function(obj, done){
          done(null, obj);
      })
-   /*  }  */
-
-//************AUTENTICADO CON TWITTER************
+//************************************************************************************************************************AUTENTICADO CON TWITTER************************************************************************************************************************
 // passport.use(new TwitterStrategy({
 //     consumerKey     : config.twitter.key,
 //     consumerSecret  : config.twitter.secret,
 //     callbackURL     : "/auth/twitter/callback"
 // }, function(accessToken, refreshToken, profile, done){
-//************FINDONE BUSCA USUARIO EN BBDD POR ID, Y SI NO EXISTE, LO CREA************
+//************************************************************************************************************************FINDONE BUSCA USUARIO EN BBDD POR ID, Y SI NO EXISTE, LO CREA************************************************************************************************************************
     // User.findOne({provider_id: profile.id}, function(err, user){
     // if(err) throw(err);
     // if(!err && user!=null) 
     // return done(null, user);
-//************GUARDA EL USER EN BBDD************
+//************************************************************************************************************************GUARDA EL USER EN BBDD************************************************************************************************************************
     // const user1 = new User1({
     //     provider_id : profile.id,
     //     provider    : profile.provider,
@@ -42,8 +38,7 @@ const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
     // });
 // });
 // }))};
-
-// ************AUTENTICADO CON FACEBOOK************
+// ************************************************************************************************************************AUTENTICADO CON FACEBOOK************************************************************************************************************************
 // passport.use(new FacebookStrategy({
 //     clientID        :config.facebook.id,
 //     clientSecret    :config.facebook.secret,
@@ -65,26 +60,15 @@ const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 //         if(err) throw err;
 //         done(null, user);
 //     }
-//     )}
+//   )}
 // }))
 
-
-
-
-
-
-//   Use the GoogleStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Google
-//   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
     clientID: config.google.OAUTH2_CLIENT_ID,
     clientSecret: config.google.OAUTH2_CLIENT_SECRET,
     callbackURL: config.google.OAUTH2_CALLBACK
-  },
-  
-  function(accessToken, refreshToken, profile, done) {
-
+  },  
+function(accessToken, refreshToken, profile, done) {
     console.log(profile);
     console.log(profile.emails[0].value);
     const usuario = new User ({
