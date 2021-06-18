@@ -39,7 +39,7 @@ app.get("/logout", function(req,res){
 })
 
 app.get('/otra',(req,res)=>{
-  console.log(req)
+ /*  console.log(req) */
   res.status(200).render('createPeli')
 })
 
