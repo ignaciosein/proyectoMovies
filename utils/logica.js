@@ -1,28 +1,51 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const Movies = require('../models/schemas')
+let bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
+
+
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({
+    host: 'localhost', 
+    user:'root',
+    database: 'movieproject', 
+    connectionLimit: 5});
 
 const usurioDB = {
     name: "Luis",
     password: "1234",
-    rol: "admin"
+    rol: "user"
 } 
 
-
 const logica = {
+    cryptoW : (word)=>{
+      return bcrypt.hashSync(word, salt)
+    },
     validateUser : (data) => {
         return data.user==usurioDB.name && data.password==usurioDB.password ;
     },  
     getRolUser : (data) =>{
         return usurioDB.rol;
     },
-    generateToken : (data)=>{
-        let tkn = jwt.sign({user: data.user}, process.env.SECRET, { expiresIn: '10h' });
+    generateToken : (email,admin)=>{
+        let tkn = jwt.sign({email: email, admin: admin}, process.env.SECRET, { expiresIn: '10h' });
         return tkn;
     },
     getUser : (data) =>{
-        return (data.user == usurioDB.name)
+/*         let conn
+        try {
+            conn = await pool.getConnection();
+            const res = await conn.query("INSERT INTO bbdd.mensajes value (?, ?)",[6,message]);
+            console.log(res); 
+          } catch (err) {
+            throw err;
+          } finally {
+            if (conn) return conn.end();
+          } */
+        return false
     },
+<<<<<<< HEAD
     createUser : (data) =>{
         return true 
     },
@@ -62,6 +85,12 @@ const logica = {
         let resultM = await  Movies.find()
         return resultM 
     },
+=======
+    loadlLocalMovies:async () =>{
+        let resultM = await  Movies.find()
+        return resultM 
+    },
+>>>>>>> 3929ece550455ed1621d5bc94c938592d407f94b
     findOneLocalMovies: async (id) =>{
         let resultOne = await  Movies.find({IdMovie: `${id}`})
         return resultOne

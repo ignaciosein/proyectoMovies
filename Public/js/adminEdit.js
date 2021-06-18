@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const editForm= document.getElementById('formEditMovie')
 editForm.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -22,24 +21,14 @@ editForm.addEventListener('submit',(e)=>{
     }
 
     let putMethod = async(url, data)=>{
-        console.log("url", url)
         let response = await fetch(url,{
             method: 'PUT',
             body: JSON.stringify(data),
-=======
- 
- 
- function remove(title){
-    let deleteMethod = async(title)=>{
-        let response = await fetch(`http://localhost:3000/deleteFilm/${title}`,{
-            method: 'DELETE',
->>>>>>> 3929ece550455ed1621d5bc94c938592d407f94b
             headers:{
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
         });
-<<<<<<< HEAD
         
         return response
     }
@@ -49,16 +38,3 @@ editForm.addEventListener('submit',(e)=>{
             window.location = resp.url
         })
 })
-=======
-        return response
-    }
-    
-    deleteMethod(title)
-    .then( resp => {
-        window.location = resp.url
-    })
-     .catch((error) => console.log(error))
- }
- 
- 
->>>>>>> 3929ece550455ed1621d5bc94c938592d407f94b

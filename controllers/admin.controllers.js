@@ -54,15 +54,42 @@ const admin = {
             res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
         }
     },
-    deleteMovie: (req, res) => {
-        Movies.findOneAndRemove({ title: req.params.Title }, function (err) {
+    deleteMovie: async (req, res) => {
+        
+         
+
+        try {
+           
+            await Movies.findOneAndRemove({ Title: req.params.Title }, function (err) {
+                if (err) {
+                    res.status(400).render("message", { type: "Error: ", message: `Error`, link: req.url, flag: true })
+                } else {
+                    res.redirect(303, '/admin')
+                }
+
+            })
+        } catch (error) {
+            res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
+        }
+
+
+ 
+
+
+
+
+
+
+
+
+/*         Movies.findOneAndRemove({ title: req.params.Title }, function (err) {
             if (err) {
                 console.log(err)
             } else {
                 res.status(200).render("deleteFilm");
             }
-        });
-    }
+        }); */
+    },
 }
 
 module.exports = admin;

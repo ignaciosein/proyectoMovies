@@ -5,7 +5,7 @@ const apiKey = process.env.APIKEY;
 
 const user = {
     getDashboard: (req, res) => {
-        res.status(200).render("home");
+        res.status(200).render("dashboard");
     },
     getMovies: async (req, res) => {
         let tituloDePelicula = req.params.title;
