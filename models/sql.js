@@ -65,6 +65,40 @@ let sql = {
     }
     return result;
   },
+  allFavMoviesApi: async (email) => {
+    let conn;
+    let result;
+    try {
+      conn = await pool.getConnection();
+      let sql_query = "  SELECT * FROM favmovies WHERE idmovie LIKE '%tt%' and `emailuser` = ? "; ///
+      result = await conn.query(sql_query, email);
+
+      /*       console.log(sql_query) */
+      // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    } catch (err) {
+        err;
+    } finally {
+      if (conn) conn.end();
+    }
+    return result;
+  },
+  checkLocalFavMovies: async (email ) => {
+    let conn;
+    let result;
+    try {
+      conn = await pool.getConnection();
+      let sql_query = " SELECT * FROM favmovies WHERE idmovie NOT LIKE '%tt%' and `emailuser` = ? "; ///
+      result = await conn.query(sql_query,email );
+
+      /*       console.log(sql_query) */
+      // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    } catch (err) {
+        err;
+    } finally {
+      if (conn) conn.end();
+    }
+    return result;
+  },
 };
 
 module.exports = sql;

@@ -46,7 +46,7 @@ const user = {
         Director: result.Director,
         Genre: result.Genre,
         Poster: result.Poster,
-        imdbID: result.imdbID,
+        imdbID: result.IdMovie,
       };
 
       arrayVacio.push(objetoDePrueba);
@@ -61,7 +61,9 @@ const user = {
     let filmTitle = req.params.title;
 
     let result = await Movies.findOne({ Title: filmTitle }).exec();
-
+    console.log("***************");
+    console.log(result);
+    console.log("***************");
     if (result === null) {
       let cleanTitle = await filmTitle
         .normalize("NFD")
@@ -75,25 +77,27 @@ const user = {
         `http://www.omdbapi.com/?i=${peliculaname}&apikey=${apiKey}`
       );
       res.status(200).render("searchAllDetails", data2);
-    }
-    let resultado2 = {
-      Title: result.Title,
-      Year: result.Year,
-      Director: result.Director,
-      Genre: result.Genre,
-      Runtime: result.Runtime,
-      Poster: result.Poster,
-      imdbID: result.IdMovie,
-    };
+    } else {
+      let resultado2 = {
+        Title: result.Title,
+        Year: result.Year,
+        Director: result.Director,
+        Genre: result.Genre,
+        Runtime: result.Runtime,
+        Poster: result.Poster,
+        imdbID: result.IdMovie,
+      };
 
-    res.status(200).render("searchAllDetails", resultado2);
+      res.status(200).render("searchAllDetails", resultado2);
+    }
   },
   getFavUserMovies: async (req, res) => {
-    try {
-      let email = "juampi@dasdas.com";
+    let arrayVacio = [];
+    let email = "juampi@dasdas.com";
 
-      let data = await sql.allFavMovies(email);
-      let arrayVacio = [];
+    try {
+      let data = await sql.allFavMoviesApi(email);
+
       for (let index = 0; index < data.length; index++) {
         console.log(data[index].idmovie);
 
@@ -104,11 +108,37 @@ const user = {
         );
         await arrayVacio.push(data2);
       }
-      res.status(200).render("favMovies", { arrayVacio });
+
+      let data2 = await sql.checkLocalFavMovies(email);
+
+      for (let index = 0; index < data2.length; index++) {
+        let idLocalMovie = data2[index].idmovie;
+
+        let result = await Movies.find({ IdMovie: idLocalMovie }).exec();
+
+        for (let index = 0; index < result.length; index++) {
+          let result2 = result[index];
+
+          let resultado2 = {
+            Title: result2.Title,
+            Year: result2.Year,
+            Director: result2.Director,
+            Genre: result2.Genre,
+            Runtime: result2.Runtime,
+            Poster: result2.Poster,
+            imdbID: result2.IdMovie,
+          };
+
+          arrayVacio.push(resultado2);
+        }
+      }
     } catch (error) {
       console.log("Recibo", error);
     }
+
+    res.status(200).render("favMovies", { arrayVacio });
   },
+
   addFavUserMovies: async (req, res) => {
     try {
       let { movieId, Title } = req.params;
