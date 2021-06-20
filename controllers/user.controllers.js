@@ -99,7 +99,7 @@ const user = {
       let data = await sql.allFavMoviesApi(email);
 
       for (let index = 0; index < data.length; index++) {
-        console.log(data[index].idmovie);
+      
 
         let idfilms = data[index].idmovie;
 
@@ -137,6 +137,31 @@ const user = {
     }
 
     res.status(200).render("favMovies", { arrayVacio });
+  },
+  deleteFavMovies: async (req, res) =>{
+
+    let idMovie =  req.params.idMovie
+
+  
+    let email = "juampi@dasdas.com";
+
+    let data = await sql.delFavMovies(idMovie,email)
+
+     
+
+    res.status(200).render("message", {
+      type: "Error: ",
+      message: `Borrado con éxito`,
+      link: `/favMovies/`,
+      flag: true,
+    });
+
+
+     
+
+
+
+
   },
 
   addFavUserMovies: async (req, res) => {

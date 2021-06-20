@@ -99,6 +99,25 @@ let sql = {
     }
     return result;
   },
+  delFavMovies: async (idMovie,email) => {
+    let conn;
+    let result;
+    try {
+      conn = await pool.getConnection();
+      let sql_query = " DELETE FROM `favmovies` WHERE idmovie = ? and `emailuser` = ?"; ///
+      result = await conn.query(sql_query, [idMovie,email]);
+
+      
+
+      /*       console.log(sql_query) */
+      // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    } catch (err) {
+        err;
+    } finally {
+      if (conn) conn.end();
+    }
+    return result;
+  },
 };
 
 module.exports = sql;

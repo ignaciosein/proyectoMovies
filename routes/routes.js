@@ -17,6 +17,7 @@ router.get("/search", user.getSearch)
 router.get("/search/:title", user.getSearchTitle)
 router.get("/favMovies",user.getFavUserMovies)
 router.get("/favMovies/:movieId/:Title",user.addFavUserMovies)
+router.get("/deleteFilm/:idMovie",user.deleteFavMovies)
  
 //Rutas admin
 router.get("/admin", admin.getLocalMovies)

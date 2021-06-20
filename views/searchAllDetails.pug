@@ -8,7 +8,10 @@ html(lang='en')
     body 
         h1 DETALLE COMPLETO PELICULA
         br
-        a(href=`../search`) VOLVER
+        a(href=`../search`)  
+          button VOLVER
+        a(href=`../favMovies`)  
+          button MIS PELICULAS FAVORITAS    
         ul
            #filmContainer 
              li Título: #{Title}
@@ -18,6 +21,5 @@ html(lang='en')
              li Género: '#{Genre} 
              li CODIFO : '#{imdbID}'
              img(src=Poster)
-             a(href=`/favMovies/${imdbID}/${Title}`) AGREGAR A FAVORITOS
-
-             
+             a(href=`/favMovies/${imdbID}/${Title}`)
+              img(src="../Public/img/fav.png")             
