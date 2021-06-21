@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/hug0alons0/proyectoMovies#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -32,6 +33,7 @@
     "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
     "passport-twitter": "^1.0.4",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "start": "^5.1.0"
   }
 }

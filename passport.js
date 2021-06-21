@@ -1,86 +1,56 @@
 const mongoose = require("mongoose");
-// const User1 = mongoose.model("User");
-// const TwitterStrategy = require("passport-twitter").Strategy;
-// const FacebookStrategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const mariadb = require('mariadb');
 const passport = require('passport');
 const User = require('./models/user')
+const mySqlM = require('./models/usersGoogle')
+const logica = require('./utils/logica')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
-//************************************************************************************************************************GUARDAR USUARIO EN LA SESION, Y LO  BORRA************************************************************************************************************************
-     passport.serializeUser(function(usr, done){
-         done(null, user);
-     });
-     passport.deserializeUser(function(obj, done){
-         done(null, obj);
-     })
-//************************************************************************************************************************AUTENTICADO CON TWITTER************************************************************************************************************************
-// passport.use(new TwitterStrategy({
-//     consumerKey     : config.twitter.key,
-//     consumerSecret  : config.twitter.secret,
-//     callbackURL     : "/auth/twitter/callback"
-// }, function(accessToken, refreshToken, profile, done){
-//************************************************************************************************************************FINDONE BUSCA USUARIO EN BBDD POR ID, Y SI NO EXISTE, LO CREA************************************************************************************************************************
-    // User.findOne({provider_id: profile.id}, function(err, user){
-    // if(err) throw(err);
-    // if(!err && user!=null) 
-    // return done(null, user);
-//************************************************************************************************************************GUARDA EL USER EN BBDD************************************************************************************************************************
-    // const user1 = new User1({
-    //     provider_id : profile.id,
-    //     provider    : profile.provider,
-    //     name        : profile.displayName,
-    //     photo       : profile.photos[0].value
-    // });
-    // user.save(function(err){
-    //     if(err) throw err;
-    //     done(null, user);
-    // });
-// });
-// }))};
-// ************************************************************************************************************************AUTENTICADO CON FACEBOOK************************************************************************************************************************
-// passport.use(new FacebookStrategy({
-//     clientID        :config.facebook.id,
-//     clientSecret    :config.facebook.secret,
-//     callbackURL     :"/auth/facebook/callback",
-//     profileFields/*no PHOTO*/   :["id", "displayName", "provider", "photos"],
-// function(accessToken, refreshToken, profile, done){
-//         User.findOne({provider_id: profile.id}, function(err, user){
-//             if(err) throw(err);
-//             if(!err && user!=null)
-//             return done(null, user);
-//         })
-//     const user = new User({
-//         provider_id     :profile.id,
-//         provider        :profile.provider,
-//         name            :profile.displayName,
-//         photo           :profile.photos[0].value
-//     });
-//     user.save(function(err){
-//         if(err) throw err;
-//         done(null, user);
-//     }
-//   )}
-// }))
+// Conexión
+
+passport.serializeUser(function(usr, done){
+      done(null, usr);
+  });
+  passport.deserializeUser(function(obj, done){
+      done(null, obj);
+  })
 
 passport.use(new GoogleStrategy({
     clientID: config.google.OAUTH2_CLIENT_ID,
     clientSecret: config.google.OAUTH2_CLIENT_SECRET,
     callbackURL: config.google.OAUTH2_CALLBACK
   },  
-function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    console.log(profile.emails[0].value);
-    const usuario = new User ({
-        googleId: profile.id,
-        name: profile.displayName,
-        provider: profile.provider,
-        photo: profile.photos[0].value,
-   })
-       usuario.save(function (err, user) {
-        return done(err, user);
-       });
+async function(accessToken, refreshToken, profile, done) {
+  if(profile.emails[0].value != undefined ){
+        const user = {
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          password: logica.cryptoW(profile.displayName),
+          admin: 0,
+          token: logica.generateToken(profile.emails[0].value,0)
+        }
+        const dataUser = Object.values(user)
+        console.log(user.name)
+        console.log(user.email);
+        let result = await mySqlM.searchOneUser(user.email)
+        console.log('numero de users:', result[0].num)
+        if (result[0].num == 0 ){
+          console.log('es 0')
+          let data = await mySqlM.createUser(dataUser)
+          if (data.affectedRows==1){
+            return done(null, true)
+          }else{
+            return done(null, false)
+          }
+        }else{
+          console.log('No es 0')
+          return done(null, false)
+        }
+        
+    } else {
+        return done(null, false);
+    }
+
     }
 ))
 

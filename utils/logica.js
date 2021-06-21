@@ -1,13 +1,19 @@
- 
+require('dotenv').config()
+const jwt = require('jsonwebtoken');
+/* const Movies = require('../models/schemas') */
+let bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 const usurioDB = {
     name: "Luis",
     password: "1234",
     rol: "admin"
 } 
-require('dotenv').config()
-const jwt = require('jsonwebtoken');
+
 
 const logica = {
+    cryptoW : (word)=>{
+        return bcrypt.hashSync(word, salt)
+      },
     validateUser : (data) => {
         return data.user==usurioDB.name && data.password==usurioDB.password ;
     },  
@@ -23,6 +29,10 @@ const logica = {
     },
     createUser : (data) =>{
         return true //query para crear un usuario en la BBDD
+    },
+    generateToken : (email,admin)=>{
+        let tkn = jwt.sign({email: email, admin: admin}, process.env.SECRET, { expiresIn: '10h' });
+        return tkn;
     }
 }
 
