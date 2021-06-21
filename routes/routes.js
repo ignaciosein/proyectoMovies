@@ -16,7 +16,7 @@ router.get('/auth/google',passport.authenticate('google', {
           'https://www.googleapis.com/auth/userinfo.profile', 
           'https://www.googleapis.com/auth/userinfo.email'] 
   }));
-router.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/admin' }), pages.googleAuth);
+router.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/login' }), pages.googleAuth);
 
 //Rutas user 
 router.get("/dashboard",midW.isAuth,midW.isUser,user.getDashboard)
