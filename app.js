@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const router = require("./routes/routes")
 const PORT = process.env.PORT || 3000;
 const cookieParser = require('cookie-parser');
-const passport = require('./middlewares/passport');;
+
 
 app.set("view engine", "pug");
 app.set("views", "./views");
