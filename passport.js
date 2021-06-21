@@ -1,9 +1,16 @@
 const mongoose = require("mongoose");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
+const mariadb = require('mariadb');
 const passport = require('passport');
 const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
+
+const pool = mariadb.createPool({
+  host: 'localhost', 
+  user:'root',
+  database: 'movieproject', 
+  connectionLimit: 5}
+);
 
 //************GUARDAR USUARIO EN LA SESION************
 /* function(passport){ */
@@ -22,22 +29,19 @@ passport.use(new GoogleStrategy({
   },
   
 
-  function(accessToken, refreshToken, profile, done) {
+  async function(accessToken, refreshToken, profile, done) {
     console.log('PROFILE *************',profile, '*******************FIN PROFILE');
-  /*   console.log('accessTOKEN: ', accessToken)
-    console.log('refressToken:', refreshToken)
-    
-    console.log(profile.emails[0].value); */
-    const usuario = new User ({
-        googleId: profile.id,
-        name: profile.displayName,
-        provider: profile.provider,
-        photo: profile.photos[0].value,
-   })
-       usuario.save(function (err, user) {
-        return done(err, user);
-       });
-    }
+    connection =  await pool.getConnection();
+      connection.query("select * from users",function(err,rows){
+        console.log(rows);
+        console.log("above row object");
+        if (err)
+                  return done(err);
+        if (rows.length) {
+                  return done(null, false);
+              }
+      })
+  }
 ))
 
 module.exports = passport;

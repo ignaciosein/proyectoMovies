@@ -55,7 +55,7 @@ app.get('/auth/google',passport.authenticate('google', {
       [ 'email', 'profile'] }
 )); */
 
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+app.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/admin' }), function(req, res) {
     res.redirect('/');
   });
 console.log(passport.authenticate())
