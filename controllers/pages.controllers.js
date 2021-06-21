@@ -104,27 +104,8 @@ const pages = {
     }
   },
   googleAuth : (req,res)=>{
-/*     console.log(req)
-    console.log('controlador') */
-
-    passport.serializeUser(function(user, done){
-      done(null, user);
-    });
-    passport.deserializeUser(function(obj, done){
-        done(null, obj);
-    })
-    passport.use(new GoogleStrategy({
-      clientID: config.google.OAUTH2_CLIENT_ID,
-      clientSecret: config.google.OAUTH2_CLIENT_SECRET,
-      callbackURL: config.google.OAUTH2_CALLBACK
-      },
-      function(accessToken, refreshToken, profile, done) {
-        console.log(accessToken)
-      console.log('PROFILE *************',profile, '*******************FIN PROFILE');
-           return done()
-        }
-    ))
-
+    let token = req.session.passport.user.token;
+    res.cookie('token', token).status(200).render('dashboard')
   }
 };
 

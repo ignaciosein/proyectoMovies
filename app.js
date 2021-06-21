@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const router = require("./routes/routes")
 const PORT = process.env.PORT || 3000;
+const passport = require("./middlewares/passport");
 const cookieParser = require('cookie-parser');
 
 
