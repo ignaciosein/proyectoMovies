@@ -35,6 +35,8 @@ const user = {
           `http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`
         );
         let array = await arrayVacio.push(data2);
+
+        console.log(data2)
       }
      /*  console.log(arrayVacio); */
       res.status(200).render("search", { arrayVacio });
@@ -46,7 +48,11 @@ const user = {
         Year: result.Year,
         Director: result.Director,
         Genre: result.Genre,
+        Runtime: result.Runtime,
         Poster: result.Poster,
+        Actors: result.Actors,
+        Language: result.Language,
+        imdbRating: result.imdbRating,
         imdbID: result.IdMovie,
       };
 
@@ -106,6 +112,9 @@ const user = {
         Genre: result.Genre,
         Runtime: result.Runtime,
         Poster: result.Poster,
+        Actors: result.Actors,
+        Language: result.Language,
+        imdbRating: result.imdbRating,
         imdbID: result.IdMovie,
       };
 
@@ -155,7 +164,10 @@ const user = {
             Genre: result2.Genre,
             Runtime: result2.Runtime,
             Poster: result2.Poster,
-            imdbID: result2.IdMovie,
+            Actors: result2.Actors,
+            Language: result2.Language,
+            imdbRating: result2.imdbRating,
+            imdbID: result.IdMovie,
           };
 
           arrayVacio.push(resultado2);

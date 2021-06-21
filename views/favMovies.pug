@@ -15,12 +15,15 @@ html(lang='en')
             for result in arrayVacio
              p
               p  
-                h1 #{result.Title}
-              p  Año #{result.Year}
-              p  Director #{result.Director}   
-              p  Duracion '#{result.Runtime} 
-              p  Genero ' #{result.Genre}
-              p  IDPELI ' #{result.imdbID}
+                h1 #{result.Title} 
+              p Año: #{ result.Year}
+              p Director: #{result.Director}
+              p Actores : '#{result.Actors}'   
+              p Duración: '#{result.Runtime} 
+              p Género: '#{result.Genre} 
+              p Idiomas : '#{result.Language}' 
+              p Valoración : '#{result.imdbRating}'   
+               
               p
                   a(href=`../search/${result.Title}`) Ficha Completa
               p

@@ -25,6 +25,7 @@ scrap: async (filmTitle) => {
 
     let arrayVacio = [];
     for (let index = 0; index < opiniones.length; index++) {
+      
       arrayVacio.push(opiniones[index].innerText);
 
     
