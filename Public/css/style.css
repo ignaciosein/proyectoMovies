@@ -1,0 +1,68 @@
+/* #333236 Azul */
+
+body {
+    background-image: url(../css/img/foto_bg.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin-top: 85px;
+  }
+  
+  h1{
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      margin: 45px;
+  }
+
+  h2{
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+  }
+
+  input{
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    background-color: transparent;
+    font-size: 16px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ffec4d;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 65px 5px 65px;
+    margin: 5px;
+  }
+  ::placeholder { color: white;
+  }
+
+  .rrss{
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #eb7e7b;
+    border: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    padding: 5px 85px 5px 85px;
+    margin-top: 55px;
+  }
+
+  .boton1{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    background-color: #F2E812;
+    font-size: 16px;
+    border: solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 46px 5px 46px;
+    margin: 15px 0px 5px 0px;
+  }

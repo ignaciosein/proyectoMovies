@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 // db.on("error", error => console.log(error));
 // db.once("open", () => console.log("connection to db established"));
 
+//************************************************************************************************************************DEFINE_ESQUEMA************************************************************************************************************************
+
 const UserSchema = new Schema({
     googleId: String,
     name       : String,
@@ -12,21 +14,6 @@ const UserSchema = new Schema({
     photo      : String,
     createdAt  : {type: Date, default: Date.now}
 });
-
 const User = mongoose.model("User", UserSchema);
-
-// const usuario = new User ({
-//     name: "Pepe",
-//     provider: "Perez",
-//     provider_id: "1",
-//     photo: "photo",
-    
-// })
-// let u = async () =>{ 
-//     const newUser = await usuario.save();
-//     return newUser
-// }
-// u().then(x => console.log(x))
-
 
 module.exports = User;

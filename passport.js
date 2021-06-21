@@ -1,47 +1,87 @@
 const mongoose = require("mongoose");
+// const User1 = mongoose.model("User");
+// const TwitterStrategy = require("passport-twitter").Strategy;
+// const FacebookStrategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const mariadb = require('mariadb');
 const passport = require('passport');
 const User = require('./models/user')
 const config = require("./config"); //Importa modulo de APIKEYS y APISECRETS
 
-const pool = mariadb.createPool({
-  host: 'localhost', 
-  user:'root',
-  database: 'movieproject', 
-  connectionLimit: 5}
-);
-
-//************GUARDAR USUARIO EN LA SESION************
-/* function(passport){ */
-     passport.serializeUser(function(user, done){
+//************************************************************************************************************************GUARDAR USUARIO EN LA SESION, Y LO  BORRA************************************************************************************************************************
+     passport.serializeUser(function(usr, done){
          done(null, user);
      });
      passport.deserializeUser(function(obj, done){
          done(null, obj);
      })
-   /*  }  */
+//************************************************************************************************************************AUTENTICADO CON TWITTER************************************************************************************************************************
+// passport.use(new TwitterStrategy({
+//     consumerKey     : config.twitter.key,
+//     consumerSecret  : config.twitter.secret,
+//     callbackURL     : "/auth/twitter/callback"
+// }, function(accessToken, refreshToken, profile, done){
+//************************************************************************************************************************FINDONE BUSCA USUARIO EN BBDD POR ID, Y SI NO EXISTE, LO CREA************************************************************************************************************************
+    // User.findOne({provider_id: profile.id}, function(err, user){
+    // if(err) throw(err);
+    // if(!err && user!=null) 
+    // return done(null, user);
+//************************************************************************************************************************GUARDA EL USER EN BBDD************************************************************************************************************************
+    // const user1 = new User1({
+    //     provider_id : profile.id,
+    //     provider    : profile.provider,
+    //     name        : profile.displayName,
+    //     photo       : profile.photos[0].value
+    // });
+    // user.save(function(err){
+    //     if(err) throw err;
+    //     done(null, user);
+    // });
+// });
+// }))};
+// ************************************************************************************************************************AUTENTICADO CON FACEBOOK************************************************************************************************************************
+// passport.use(new FacebookStrategy({
+//     clientID        :config.facebook.id,
+//     clientSecret    :config.facebook.secret,
+//     callbackURL     :"/auth/facebook/callback",
+//     profileFields/*no PHOTO*/   :["id", "displayName", "provider", "photos"],
+// function(accessToken, refreshToken, profile, done){
+//         User.findOne({provider_id: profile.id}, function(err, user){
+//             if(err) throw(err);
+//             if(!err && user!=null)
+//             return done(null, user);
+//         })
+//     const user = new User({
+//         provider_id     :profile.id,
+//         provider        :profile.provider,
+//         name            :profile.displayName,
+//         photo           :profile.photos[0].value
+//     });
+//     user.save(function(err){
+//         if(err) throw err;
+//         done(null, user);
+//     }
+//   )}
+// }))
 
 passport.use(new GoogleStrategy({
     clientID: config.google.OAUTH2_CLIENT_ID,
     clientSecret: config.google.OAUTH2_CLIENT_SECRET,
     callbackURL: config.google.OAUTH2_CALLBACK
-  },
-  
-
-  async function(accessToken, refreshToken, profile, done) {
-    console.log('PROFILE *************',profile, '*******************FIN PROFILE');
-    connection =  await pool.getConnection();
-      connection.query("select * from users",function(err,rows){
-        console.log(rows);
-        console.log("above row object");
-        if (err)
-                  return done(err);
-        if (rows.length) {
-                  return done(null, false);
-              }
-      })
-  }
+  },  
+function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    console.log(profile.emails[0].value);
+    const usuario = new User ({
+        googleId: profile.id,
+        name: profile.displayName,
+        provider: profile.provider,
+        photo: profile.photos[0].value,
+   })
+       usuario.save(function (err, user) {
+        return done(err, user);
+       });
+    }
 ))
 
 module.exports = passport;

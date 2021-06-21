@@ -4,25 +4,44 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Document
+    title Home
     link(rel='stylesheet' href='../Public/CSS/style.css')
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap' rel='stylesheet')
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Dosis:wght@600;800&display=swap' rel='stylesheet')
+
   body.divHome
-    h1 HOME
-      | FORMULARIO DE LOGIN
+
+    h1 MOVIE UP!! 
+      br
+      h2 Identifícate!
       form#formLogin(action="/" method="POST")
-        input(type='text' placeholder="Introduce Usuario" name='loginUser' required)
-        
-        input(type='text' placeholder="Introduce Password" name='loginPasswordUser' required)
-         
-        button(type='submit' name='SubmitLogUser' ) ENVIAR
+        input(type='text' placeholder="User" name='loginUser' required)
+        br
+        input(type='text' placeholder="Password" name='loginPasswordUser' required)
+        br
+        button.boton1(type='submit' name='SubmitLogUser' ) SIGN IN!
     
-    p Aún no lo estas?
-    input#email.input(type='text' placeholder='Introduce tu Email...' required)
+    h2  ¿Aún no estas registrado?
+    input#email.input(type='text' placeholder='Email' required)
     br
-    input#password.input(type='text' placeholder='Nueva contraseña...' required)
+    input#password.input(type='text' placeholder='Password' required)
     br
-    input#password.input(type='text' placeholder='Repite tu contraseña...' required)
+    input#password.input(type='text' placeholder='Repeat Password' required)
     br
+<<<<<<< HEAD
     a(href='/auth/google') Sign In with Google
+=======
+    button.boton1(type='submit') SIGN UP!
+>>>>>>> 12817547634ededce2f731c303f0c38f1e5b8281
     br
-    button.boton1(type='submit') SIGN UP
+    br
+    br
+    a.rrss(href='/auth/google') Google
+    br
+
+    //- a(href='/auth/twitter') Sign In with Twitter 
+    //- a(href='/auth/facebook') Sign In with Facebook
+    
+    
