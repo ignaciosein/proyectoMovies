@@ -50,10 +50,12 @@ app.get('/auth/google',passport.authenticate('google', {
         'https://www.googleapis.com/auth/userinfo.email'] 
 }));
 
-
+/* app.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile'] }
+)); */
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-  console.log(req)
     res.redirect('/');
   });
 console.log(passport.authenticate())

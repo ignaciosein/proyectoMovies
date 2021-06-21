@@ -23,10 +23,11 @@ passport.use(new GoogleStrategy({
   
 
   function(accessToken, refreshToken, profile, done) {
-    console.log('accessTOKEN: ', accessToken)
+    console.log('PROFILE *************',profile, '*******************FIN PROFILE');
+  /*   console.log('accessTOKEN: ', accessToken)
     console.log('refressToken:', refreshToken)
-    console.log(profile);
-    console.log(profile.emails[0].value);
+    
+    console.log(profile.emails[0].value); */
     const usuario = new User ({
         googleId: profile.id,
         name: profile.displayName,
