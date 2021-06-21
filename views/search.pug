@@ -24,4 +24,7 @@ html(lang='en')
               p  IDPELI ' #{result.imdbID}
               p
                   a(href=`search/${result.Title}`) Ficha Completa
-              img#Poster(src=result.Poster) 
+              img#Poster(src=result.Poster)
+              a(href=`/favMovies/${result.imdbID}`)
+              a(href=`/favMovies/${result.imdbID}/${result.Title}`)
+                img(src="../Public/img/fav.png")
