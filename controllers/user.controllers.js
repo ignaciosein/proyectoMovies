@@ -167,7 +167,7 @@ const user = {
             Actors: result2.Actors,
             Language: result2.Language,
             imdbRating: result2.imdbRating,
-            imdbID: result.IdMovie,
+            imdbID: result2.IdMovie,
           };
 
           arrayVacio.push(resultado2);
