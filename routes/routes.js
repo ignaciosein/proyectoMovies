@@ -2,7 +2,6 @@ const router = require("express").Router();
 const pages = require("../controllers/pages.controllers")
 const user = require("../controllers/user.controllers")
 const admin = require('../controllers/admin.controllers')
-const userG = require('../controllers/google.controller')
 const midW = require('../middlewares/auth')
 const passport = require("../middlewares/passport");
 
@@ -17,23 +16,25 @@ router.get('/auth/google',passport.authenticate('google', {
           'https://www.googleapis.com/auth/userinfo.profile', 
           'https://www.googleapis.com/auth/userinfo.email'] 
   }));
-/* router.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/admin' }), userG.gUserA); */
 router.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/admin' }), pages.googleAuth);
 
 //Rutas user 
-router.get("/dashboard",user.getDashboard)
-router.get("/movies", user.getMovies)
-router.post("/search", user.postSearch)
+router.get("/dashboard",midW.isAuth,midW.isUser,user.getDashboard)
+router.get("/movies",midW.isAuth,midW.isUser,user.getMovies)
+router.post("/search",midW.isAuth,midW.isUser,user.postSearch)
 router.get("/search", midW.isAuth,midW.isUser,user.getSearch)
-router.get("/search/:title", user.getSearchTitle)
-router.get("/favMovies",user.getFavUserMovies)
+router.get("/search/:title",midW.isAuth,midW.isUser,user.getSearchTitle)
+router.get("/favMovies",midW.isAuth,midW.isUser,user.getFavUserMovies)
  
 //Rutas admin
-router.get("/admin", admin.getLocalMovies)
-router.get("/createMovie", admin.getCreateMovie)
-router.post("/createMovie", admin.postCreateMovie)
-router.get("/editMovie", admin.getEditMovie)
-router.put("/editMovie/:id", admin.putMovie)
-router.delete("/deleteFilm/:Title", admin.deleteMovie)
- 
+router.get("/admin",midW.isAuth,midW.isAdmin, admin.getLocalMovies)
+router.get("/createMovie",midW.isAuth,midW.isAdmin,admin.getCreateMovie)
+router.post("/createMovie",midW.isAuth,midW.isAdmin,admin.postCreateMovie)
+router.get("/editMovie",midW.isAuth,midW.isAdmin,admin.getEditMovie)
+router.put("/editMovie/:id",midW.isAuth,midW.isAdmin,admin.putMovie)
+router.delete("/deleteFilm/:Title",midW.isAuth,midW.isAdmin, admin.deleteMovie)
+
+//Rutas logout
+router.get("/logout",pages.getLogout)
+
 module.exports = router;

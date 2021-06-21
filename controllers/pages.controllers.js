@@ -1,14 +1,9 @@
 const logica = require("../utils/logica");
-const pelis = require("../utils/pelis");
 const userModel = require('../models/user.model.MySQL')
 var bcrypt = require('bcryptjs');
 const userMySQL = require("../models/user.model.MySQL");
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const passport = require('passport');
-const User = require('../models/user.model.MySQL')
-const config = require("../config");
-/* const Movies = require("../models/schemas") */
-/* const apiKey = process.env.APIKEY; */
+const mySqlM = require('../models/usersGoogle');
+
 
 const pages = {
   home: (req, res) => {
@@ -103,9 +98,38 @@ const pages = {
       res.status(500).render('message',{ type: "Error: ", message: "Ocurrio un error inesperado :(", link: '/', flag: true }) 
     }
   },
-  googleAuth : (req,res)=>{
-    let token = req.session.passport.user.token;
-    res.cookie('token', token).status(200).render('dashboard')
+  googleAuth : async (req,res)=>{
+    const user = {
+      name: req.session.passport.user.name,
+      email: req.session.passport.user.email,
+      password: logica.cryptoW(req.session.passport.user.name),
+      admin: 0,
+      token: logica.generateToken(req.session.passport.user.email,0)
+    }
+
+    const dataUser = Object.values(user)
+
+    let result = await mySqlM.searchOneUser(user.email)
+    if (result[0].num == 0 ){
+      let data = await mySqlM.createUser(dataUser)
+      if (data.affectedRows==1){
+        res.cookie('token',user.token).status(200).render('dashboard')
+      }else{
+        res.status(403).render('message',{ type: "Error: ", message: "No se puede registrar al usuario, inténtelo más tarde", link: '/', flag: true }) 
+      }
+    }else{
+      let newToken = logica.generateToken(user.email,user.admin)
+      let result = await mySqlM.insertNewToken(user.email,newToken)
+      if(result.affectedRows==1){
+        res.cookie('token',user.token).status(200).render('dashboard')
+      }else{
+        res.status(403).render('message',{ type: "Error: ", message: "No se puede registrar al usuario, inténtelo más tarde", link: '/', flag: true }) 
+      }
+    }    
+  },
+  getLogout : async(req,res) =>{
+      await res.clearCookie('token')
+      res.redirect('/')
   }
 };
 
