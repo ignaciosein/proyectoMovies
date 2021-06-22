@@ -3,6 +3,7 @@ const pelis = require("../utils/pelis");
 const Movies = require("../models/schemas");
 const sql = require("../models/sql");
 const apiKey = process.env.APIKEY;
+const scraping = require ("../utils/opinions")
 
 const user = {
   getDashboard: (req, res) => {
@@ -34,8 +35,10 @@ const user = {
           `http://www.omdbapi.com/?i=${idDePelis}&apikey=${apiKey}`
         );
         let array = await arrayVacio.push(data2);
+
+        console.log(data2)
       }
-      console.log(arrayVacio);
+     /*  console.log(arrayVacio); */
       res.status(200).render("search", { arrayVacio });
     } else {
       console.log("EXISTE EN LOCAL");
@@ -45,7 +48,11 @@ const user = {
         Year: result.Year,
         Director: result.Director,
         Genre: result.Genre,
+        Runtime: result.Runtime,
         Poster: result.Poster,
+        Actors: result.Actors,
+        Language: result.Language,
+        imdbRating: result.imdbRating,
         imdbID: result.IdMovie,
       };
 
@@ -64,11 +71,22 @@ const user = {
     console.log("***************");
     console.log(result);
     console.log("***************");
+
+    
+
     if (result === null) {
       let cleanTitle = await filmTitle
         .normalize("NFD")
         .replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, "$1$2")
         .normalize();
+
+       
+       /*   let opinions =  await scraping.scrap(cleanTitle)  
+
+
+        console.log(opinions) */
+         
+
       let data = await pelis.getMovie(
         `http://www.omdbapi.com/?t=${cleanTitle}&apikey=${apiKey}`
       );
@@ -76,19 +94,39 @@ const user = {
       let data2 = await pelis.getMovie(
         `http://www.omdbapi.com/?i=${peliculaname}&apikey=${apiKey}`
       );
-      res.status(200).render("searchAllDetails", data2);
+
+     
+    
+      let data4 = await scraping.scrap(data2.Title)
+
+      console.log(data4.arrayVacio)  
+
+      let opiniones = data4.arrayVacio
+
+      res.status(200).render("searchAllDetails", {data2,opiniones});
     } else {
-      let resultado2 = {
+      let data2 = {
         Title: result.Title,
         Year: result.Year,
         Director: result.Director,
         Genre: result.Genre,
         Runtime: result.Runtime,
         Poster: result.Poster,
+        Actors: result.Actors,
+        Language: result.Language,
+        imdbRating: result.imdbRating,
         imdbID: result.IdMovie,
       };
 
-      res.status(200).render("searchAllDetails", resultado2);
+      let data4 = await scraping.scrap(data2.Title)
+
+     
+      console.log(data4.arrayVacio)  
+
+      let opiniones = data4.arrayVacio
+
+
+      res.status(200).render("searchAllDetails", {data2,opiniones});
     }
   },
   getFavUserMovies: async (req, res) => {
@@ -126,6 +164,9 @@ const user = {
             Genre: result2.Genre,
             Runtime: result2.Runtime,
             Poster: result2.Poster,
+            Actors: result2.Actors,
+            Language: result2.Language,
+            imdbRating: result2.imdbRating,
             imdbID: result2.IdMovie,
           };
 
@@ -178,7 +219,7 @@ const user = {
         res.status(200).render("message", {
           type: "Error: ",
           message: `Esta pelicula ya existe en la base de datos`,
-          link: `/search/${Title}`,
+          link: `/search`,
           flag: true,
         });
       } else {
@@ -187,7 +228,7 @@ const user = {
         res.status(200).render("message", {
           type: "Info: ",
           message: `Se agregó la pelicula a la base de datos`,
-          link: `/search/${Title}`,
+          link: `/search`,
           flag: true,
         });
       }

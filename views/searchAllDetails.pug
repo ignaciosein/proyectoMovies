@@ -14,12 +14,20 @@ html(lang='en')
           button MIS PELICULAS FAVORITAS    
         ul
            #filmContainer 
-             li Título: #{Title}
-             li Año: #{ Year}
-             li Director: #{Director}   
-             li Duración: '#{Runtime} 
-             li Género: '#{Genre} 
-             li CODIFO : '#{imdbID}'
-             img(src=Poster)
-             a(href=`/favMovies/${imdbID}/${Title}`)
-              img(src="../Public/img/fav.png")             
+             li Título: #{data2.Title}
+             li Año: #{ data2.Year}
+             li Director: #{data2.Director}
+             li Actores : '#{data2.Actors}'   
+             li Duración: '#{data2.Runtime} 
+             li Género: '#{data2.Genre} 
+             li Idiomas : '#{data2.Language}' 
+             li Valoración : '#{data2.imdbRating}'              
+             img(src=data2.Poster)
+             a(href=`/favMovies/${data2.imdbID}/${data2.Title}`)
+              img(src="../Public/img/fav.png") 
+        ul 
+           li 
+                h1 Opiniones: 
+        for opinions in opiniones                  
+              li
+                h3 #{opinions}            
