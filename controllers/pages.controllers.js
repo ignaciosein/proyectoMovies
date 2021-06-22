@@ -1,16 +1,21 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
+ 
+const Movies = require("../models/schemas")
+const apiKey = process.env.APIKEY;
+ 
 const userModel = require('../models/user.model.MySQL')
 var bcrypt = require('bcryptjs');
 const userMySQL = require("../models/user.model.MySQL");
 /* const Movies = require("../models/schemas") */
 /* const apiKey = process.env.APIKEY; */
+ 
 
 const pages = {
   home: (req, res) => {
     res.status(200).render("home");
   },
-  postLogin: async (req, res) => {
+    postLogin: async (req, res) => {
     const user = {
       email: req.body.loginEmail,
       password: req.body.loginPasswordUser,
@@ -97,6 +102,7 @@ const pages = {
     }catch(err){
       console.log(err)
       res.status(500).render('message',{ type: "Error: ", message: "Ocurrio un error inesperado :(", link: '/', flag: true }) 
+ 
     }
   }
 };

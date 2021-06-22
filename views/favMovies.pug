@@ -7,11 +7,25 @@ html(lang='en')
     title Document
   body
     h1 PELÍCULAS FAVORITAS
-    div
-      p Título:
-      p Año:
-      p Director:
-      p Duración:
-      p Género:
-    div IMAGEN
-    button.boton2(type='submit') BORRAR FAV
+    P
+     a(href=`../search`)  
+      button BUSCADOR DE PELICULAS    
+    #filmContainer
+          if arrayVacio              
+            for result in arrayVacio
+             p
+              p  
+                h1 #{result.Title} 
+              p Año: #{ result.Year}
+              p Director: #{result.Director}
+              p Actores : '#{result.Actors}'   
+              p Duración: '#{result.Runtime} 
+              p Género: '#{result.Genre} 
+              p Idiomas : '#{result.Language}' 
+              p Valoración : '#{result.imdbRating}'                  
+              p
+                  a(href=`../search/${result.Title}`) Ficha Completa
+              p
+                  a(href=`../deleteFilm/${result.imdbID}`)  
+                    img(src="../Public/img/unfav.png")
+              img#Poster(src=result.Poster) 

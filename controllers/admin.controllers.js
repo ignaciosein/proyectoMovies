@@ -19,7 +19,11 @@ const admin = {
                 Director: req.body.director,
                 Genre: req.body.gender,
                 Runtime: req.body.duration,
-                Poster: req.body.image
+                Poster: req.body.image,
+                Actors: req.body.actors,
+                Language: req.body.language,
+                imdbRating: req.body.rating,
+
             })
             let result = await movie.save((err) => {
                 if (err) {

@@ -32,6 +32,18 @@ const localMoviesSchemas = new Schema({
     IdMovie : { 
         type:Number
     },
+    imdbRating : { 
+        type:Number
+    },
+    Actors : { 
+        type:String,
+        required: true
+    },
+    Language : { 
+        type:String,
+        required: true
+    },
+    
     registerDate: {
         type: Date,
         required: true,

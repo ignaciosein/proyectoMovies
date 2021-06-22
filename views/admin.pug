@@ -22,8 +22,11 @@ html(lang='en')
                 h1#titleMovie #{result.Title}
                 p Año: #{result.Year}
                 p Director: #{result.Director}
+                p Actores: #{result.Actors}
                 p Duración: #{result.Runtime}
                 p Genero: #{result.Genre}
+                p Puntuación: #{result.imdbRating}
+                p Idioma: #{result.Language}
                 img#Poster(src=result.Poster)
                 a(href=`#`)
                   button#deleteMovie(type='button' onclick="remove('" + result.Title + "')" name="deleteButton") Eliminar
