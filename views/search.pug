@@ -7,10 +7,10 @@ html(lang='en')
     link(rel='stylesheet', href='../Public/css/search.css', type='text/css' )
     title Document
     body 
-     h1 SEARCH 
-        form(action='/search' method='post')
-            input#filmName(type='text' placeholder='Buscar Película' required name='peliculaBuscar') 
-            button#searchFilm(type='submit') BUSCAR!
+    .formSrch
+      form(action='/search' method='post')
+          input#filmName(type='text' placeholder='Buscar Película' required name='peliculaBuscar') 
+         
     #filmContainer
           if arrayVacio              
             for result in arrayVacio
