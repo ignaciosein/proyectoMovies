@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+    body 
+        h1 DETALLE COMPLETO PELICULA
+        br
+        a(href=`../search`)  
+          button VOLVER
+        a(href=`../favMovies`)  
+          button MIS PELICULAS FAVORITAS    
+        ul
+           #filmContainer 
+             li Título: #{data2.Title}
+             li Año: #{ data2.Year}
+             li Director: #{data2.Director}
+             li Actores : '#{data2.Actors}'   
+             li Duración: '#{data2.Runtime} 
+             li Género: '#{data2.Genre} 
+             li Idiomas : '#{data2.Language}' 
+             li Valoración : '#{data2.imdbRating}'              
+             img(src=data2.Poster)
+             a(href=`/favMovies/${data2.imdbID}/${data2.Title}`)
+              img(src="../Public/img/fav.png") 
+        ul 
+           li 
+                h1 Opiniones: 
+        for opinions in opiniones                  
+              li
+                h3 #{opinions}            

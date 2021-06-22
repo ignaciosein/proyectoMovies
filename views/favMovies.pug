@@ -1,0 +1,31 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+  body
+    h1 PELÍCULAS FAVORITAS
+    P
+     a(href=`../search`)  
+      button BUSCADOR DE PELICULAS    
+    #filmContainer
+          if arrayVacio              
+            for result in arrayVacio
+             p
+              p  
+                h1 #{result.Title} 
+              p Año: #{ result.Year}
+              p Director: #{result.Director}
+              p Actores : '#{result.Actors}'   
+              p Duración: '#{result.Runtime} 
+              p Género: '#{result.Genre} 
+              p Idiomas : '#{result.Language}' 
+              p Valoración : '#{result.imdbRating}'                  
+              p
+                  a(href=`../search/${result.Title}`) Ficha Completa
+              p
+                  a(href=`../deleteFilm/${result.imdbID}`)  
+                    img(src="../Public/img/unfav.png")
+              img#Poster(src=result.Poster) 

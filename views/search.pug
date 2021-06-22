@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/search.css', type='text/css' )
+    title Document
+    body 
+     h1 SEARCH 
+        form(action='/search' method='post')
+            input#filmName(type='text' placeholder='Buscar Película' required name='peliculaBuscar') 
+            button#searchFilm(type='submit') BUSCAR!
+    #filmContainer
+          if arrayVacio              
+            for result in arrayVacio
+              a.linkSrch(href=`search/${result.Title}`)
+                .cardSrch
+                  .contSrch
+                    img.Poster(src=result.Poster)
+                    .textSrch
+                      h1 #{result.Title}
+                      .subTextSrch
+                        p  #{result.Year} 
+                        a(href=`/favMovies/${result.imdbID}/${result.Title}`)
+                          img.imgFv(src="../Public/img/fav.png")
+                  .resumenSrch
+                    p  Director #{result.Director}   
+                    p  Duracion '#{result.Runtime} 
+                    p  Genero ' #{result.Genre} 
