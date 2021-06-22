@@ -1,11 +1,11 @@
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const passport = require('passport');
-const config = require("../utils/config"); //Importa modulo de APIKEYS y APISECRETS
+/* const config = require("../utils/config"); */ //Importa modulo de APIKEYS y APISECRETS
 
 passport.use(new GoogleStrategy({
-  clientID: config.google.OAUTH2_CLIENT_ID,
-  clientSecret: config.google.OAUTH2_CLIENT_SECRET,
-  callbackURL: config.google.OAUTH2_CALLBACK
+  clientID: process.env.OAUTH2_CLIENT_ID,
+  clientSecret: process.env.OAUTH2_CLIENT_SECRET,
+  callbackURL: process.env.OAUTH2_CALLBACK
 },  
 function(req, accessToken, refreshToken, profile, done) {
     passport.deserializeUser(function(obj, done){

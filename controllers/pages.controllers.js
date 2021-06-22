@@ -7,7 +7,12 @@ const mySqlM = require('../models/usersGoogle');
 
 const pages = {
   home: (req, res) => {
-    res.status(200).render("home");
+    let token = req.cookies.token;
+    if(token|| token != undefined){
+      logica.decoToken(token) == 0 ? res.status(200).render('dashboard'):res.status(200).render('admin')
+    }else{
+      res.status(200).render('home')
+    }
   },
     postLogin: async (req, res) => {
     const user = {
