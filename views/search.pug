@@ -6,7 +6,21 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='../Public/css/search.css', type='text/css' )
     title Document
-    body 
+    body
+    #imgMenu
+      img#menuIcon.blockMenu(src='../Public/img/menu.png')
+      img#menuIcon2.noneMenu(src='../Public/img/menu.png')
+    #containerMenu
+      ul#menuBurger
+        li  
+          a(href='/dashboard') Panel de usuario
+        li 
+          a(href='/favMovies') Mis peliculas
+        li 
+          a(href='/search') Buscar peliculas
+        li 
+          a(href='/logout') Cerrar Sesión  
+
     .formSrch
       form(action='/search' method='post')
           input#filmName(type='text' placeholder='Buscar Película' required name='peliculaBuscar') 
@@ -24,7 +38,8 @@ html(lang='en')
                         p  #{result.Year} 
                         a(href=`/favMovies/${result.imdbID}/${result.Title}`)
                           img.imgFv(src="../Public/img/fav.png")
-                  .resumenSrch
-                    p  Director #{result.Director}   
-                    p  Duracion '#{result.Runtime} 
-                    p  Genero ' #{result.Genre} 
+                      .resumenSrch
+                        p  Director #{result.Director}   
+                        p  Duracion '#{result.Runtime} 
+                        p  Genero ' #{result.Genre}  
+    script(src='../Public/js/menu.js')
