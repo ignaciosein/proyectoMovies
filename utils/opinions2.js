@@ -31,47 +31,63 @@ scrap: async (filmTitle) => {
  
  let tittleClean = capitalize(filmTitle)
 
+ console.log(tittleClean)
+
  
  await page.waitForSelector(`a[title='${tittleClean} ']`)
 
  await page.click(`a[title='${tittleClean} ']`)
  
 
+ 
 
 
  await page.waitForSelector('h1[id="main-title"]')
+
+ await page.click('h1[id="main-title"]')
  
 
+ await page.waitForSelector("#mt-content-cell > div:nth-child(6) > div > div.margin-ntabs > ul > li:nth-child(2)")
+
+
+/////CLICK EN CRITICA
  await page.click("#mt-content-cell > div:nth-child(6) > div > div.margin-ntabs > ul > li:nth-child(2)")
  
  
+ await page.waitForSelector('div.review-text1')  
+ 
 
   const data = await page.evaluate(() => {
-    /* let opiniones = document.querySelectorAll('h1[id="main-title"]')  */;
+       let opiniones = document.querySelectorAll("div.review-text1")  
+       let arrayVacio = [];
+       for (let index = 0; index < opiniones.length; index++) {
 
+        arrayVacio.push(opiniones[index].innerText) 
+      
+         
+       }
+ 
       
     return {
-      opiniones
+      arrayVacio
     };
   });
-
-  await browser.close(filmTitle);
+  console.log(data)
+  await browser.close();
+  
   return data;
 }
-
-
-
-
+ 
 
 }
 
 
 
-let filmTitle = "a todo gas"
+ 
 
-scrapping.scrap(filmTitle) /*  */
+ scrapping.scrap( "a todo gas"  )   /*  */
 
 /* scrap().then(data =>console.log(data)) */
 
-/* module.exports = scrapping;  */
- 
+ /*  module.exports = scrapping;  
+  */
