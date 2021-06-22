@@ -20,20 +20,36 @@ scrap: async (filmTitle) => {
 
   await page.click('#qc-cmp2-ui > div.qc-cmp2-footer.qc-cmp2-footer-overlay.qc-cmp2-footer-scrolled > div > button.css-47sehv');
 
-  await page.click(' #title-result > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)')
+
+ 
+  function capitalize(filmTitle) {
+    return filmTitle[0].toUpperCase() + filmTitle.slice(1);
 
 
- /*  await page.click(
-    "#content-layout > div.section-wrap.gd-2-cols.gd-gap-30.row-col-sticky > div > section.section.movies-results > ul > li:nth-child(1) > div > div.meta > h2  "  ); */ 
+  }
+ 
+ 
+ let tittleClean = capitalize(filmTitle)
 
-  await page.waitForSelector("#main-title > span:nth-child(1)");
+ 
+ await page.waitForSelector(`a[title='${tittleClean} ']`)
+
+ await page.click(`a[title='${tittleClean} ']`)
+ 
+
+
+
+ await page.waitForSelector('h1[id="main-title"]')
+ 
+
+ await page.click("#mt-content-cell > div:nth-child(6) > div > div.margin-ntabs > ul > li:nth-child(2)")
+ 
+ 
 
   const data = await page.evaluate(() => {
-    let opiniones = document.querySelectorAll("#main-title > span:nth-child(1)" );
+    /* let opiniones = document.querySelectorAll('h1[id="main-title"]')  */;
 
-   
-
-    
+      
     return {
       opiniones
     };
@@ -51,7 +67,7 @@ scrap: async (filmTitle) => {
 
 
 
-let filmTitle = "torrente"
+let filmTitle = "a todo gas"
 
 scrapping.scrap(filmTitle) /*  */
 
