@@ -1,0 +1,58 @@
+body {
+  margin: 0%;
+  top: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+li {
+  text-decoration: none;
+  list-style: none;
+}
+#menuBurger {
+  margin-top: 0%;
+  padding-top: 10%;
+  padding-bottom: 100%;
+  margin-left: 0%;
+  width: 70%;
+  font-style: bolder;
+  height: 100%;
+  font-size: 1.2rem;
+  text-decoration: none;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  position: fixed;
+}
+li {
+  padding: 5%;
+}
+#containerMenu {
+  display: none;
+  height: 100%;
+  width: 80%;
+}
+header {
+  margin-top: 0%;
+  width: 100%;
+  background-color: black;
+  height: 80px;
+}
+
+#menuIcon,
+#menuIcon2 {
+  width: 15%;
+  padding-top: 3%;
+  margin-top: 0%;
+  margin-left: 2%;
+}
+
+.blockMenu {
+  display: block;
+}
+
+.noneMenu {
+  display: none;
+}
