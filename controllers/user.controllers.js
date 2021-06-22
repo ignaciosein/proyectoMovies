@@ -191,7 +191,7 @@ const user = {
      
 
     res.status(200).render("message", {
-      type: "Error: ",
+      type: "Info: ",
       message: `Borrado con éxito`,
       link: `/favMovies/`,
       flag: true,
