@@ -56,4 +56,3 @@ scrap: async (filmTitle) => {
 /* scrap().then(data =>console.log(data)) */
 
 module.exports = scrapping; 
- 

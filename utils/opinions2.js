@@ -37,23 +37,35 @@ scrap: async (filmTitle) => {
  await page.click(`a[title='${tittleClean} ']`)
  
 
+ 
 
 
  await page.waitForSelector('h1[id="main-title"]')
  
 
  await page.click("#mt-content-cell > div:nth-child(6) > div > div.margin-ntabs > ul > li:nth-child(2)")
+
+ await page.waitForSelector(".review-text1")
  
  
 
-  const data = await page.evaluate(() => {
-    /* let opiniones = document.querySelectorAll('h1[id="main-title"]')  */;
+ const data = await page.evaluate(() => {
+  let opiniones = document.querySelectorAll(".review-text1");
 
-      
-    return {
-      opiniones
-    };
-  });
+  let arrayVacio = [];
+  for (let index = 0; index < opiniones.length; index++) {
+    
+    arrayVacio.push(opiniones[index].innerText);
+
+  
+  }
+
+  
+  console.log(arrayVacio)
+  return {
+    arrayVacio,
+  };
+});
 
   await browser.close(filmTitle);
   return data;
