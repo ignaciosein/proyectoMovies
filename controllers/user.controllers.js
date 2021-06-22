@@ -1,7 +1,7 @@
 const logica = require("../utils/logica");
 const pelis = require("../utils/pelis");
 const Movies = require("../models/schemas")
-
+const sql = require("../models/sql");
 const apiKey = process.env.APIKEY;
 const scraping = require ("../utils/opinions")
 
@@ -10,6 +10,7 @@ const user = {
     res.status(200).render("dashboard");
   },
   getMovies: async (req, res) => {
+    console.log('getMovie req user: ', req.user)
     let tituloDePelicula = req.params.title;
     let data = await pelis.getMovie(
       `http://www.omdbapi.com/?t=${tituloDePelicula}&apikey=${apiKey}`
@@ -17,6 +18,7 @@ const user = {
     res.status(200).render("film", data);
   },
   postSearch: async (req, res) => {
+    console.log("************req",req.user)
     let movie = req.body.peliculaBuscar;
     let arrayVacio = [];
 
@@ -36,7 +38,7 @@ const user = {
         );
         let array = await arrayVacio.push(data2);
 
-        console.log(data2)
+        /* console.log(data2) */
       }
      /*  console.log(arrayVacio); */
       res.status(200).render("search", { arrayVacio });
@@ -62,9 +64,11 @@ const user = {
     }
   },
   getSearch: (req, res) => {
+    console.log('getSearch req: ',req.user)
     res.status(200).render("search");
   },
   getSearchTitle: async (req, res) => {
+    console.log('getSearchTitle req: ',req.user)
     let filmTitle = req.params.title;
 
     let result = await Movies.findOne({ Title: filmTitle }).exec();
@@ -130,8 +134,9 @@ const user = {
     }
   },
   getFavUserMovies: async (req, res) => {
+    console.log('getFavUserMovies: ',req.user)
     let arrayVacio = [];
-    let email = "juampi@dasdas.com";
+    let email = req.user;
 
     try {
       let data = await sql.allFavMoviesApi(email);
@@ -180,11 +185,11 @@ const user = {
     res.status(200).render("favMovies", { arrayVacio });
   },
   deleteFavMovies: async (req, res) =>{
-
+    console.log('deleteFavMovies *****: ',req.user)
     let idMovie =  req.params.idMovie
 
   
-    let email = "juampi@dasdas.com";
+    let email = req.user;
 
     let data = await sql.delFavMovies(idMovie,email)
 
@@ -206,10 +211,11 @@ const user = {
   },
 
   addFavUserMovies: async (req, res) => {
+    console.log('addFavUserMovies *****: ',req.user)
     try {
       let { movieId, Title } = req.params;
 
-      let email = "juampi@dasdas.com";
+      let email = req.user;
 
       let data = await sql.checkFavMovies(movieId, email);
 

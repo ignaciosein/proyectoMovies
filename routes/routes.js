@@ -25,6 +25,8 @@ router.post("/search",midW.isAuth,midW.isUser,user.postSearch)
 router.get("/search", midW.isAuth,midW.isUser,user.getSearch)
 router.get("/search/:title",midW.isAuth,midW.isUser,user.getSearchTitle)
 router.get("/favMovies",midW.isAuth,midW.isUser,user.getFavUserMovies)
+router.get("/favMovies/:movieId/:Title",midW.isAuth,midW.isUser,user.addFavUserMovies)
+router.get("/deleteFilm/:idMovie",midW.isAuth,midW.isUser,user.deleteFavMovies)
  
 //Rutas admin
 router.get("/admin",midW.isAuth,midW.isAdmin, admin.getLocalMovies)
