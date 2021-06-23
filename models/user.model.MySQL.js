@@ -1,4 +1,5 @@
 const pool = require('../database/mysql.cnx')
+
 const userMySQL = {
     createUser : async(data) =>{
         let conn;
