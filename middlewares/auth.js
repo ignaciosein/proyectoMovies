@@ -18,16 +18,14 @@ let middlewares = {
         next()
     },
     isUser : (req,res,next)=>{
-        /* console.log('user',req.user)
-        console.log('admin',req.admin) */
         if(req.admin==1){
-            return res.status(403).render('message',{type:'Error:', message:'No tienes permiso para esta sección',link: '/admin' ,flag: true})
+            res.status(403).render('message',{type:'Error:', message:'No tienes permiso para esta sección',link: '/admin' ,flag: true})
         }
         next()
     },
     isAdmin : (req, res,next)=>{
         if(req.admin==0){
-            return res.status(403).render('message',{type:'Error:', message:'No tienes permiso para esta sección',link:'/dashboard' ,flag: true})
+            res.status(403).render('message',{type:'Error:', message:'No tienes permiso para esta sección',link:'/dashboard' ,flag: true})
         }
         next()
     }

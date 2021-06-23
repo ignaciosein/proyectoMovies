@@ -1,10 +1,4 @@
-const mariadb = require("mariadb");
-const pool = mariadb.createPool({
-  host: "localhost",
-  user: "root",
-  connectionLimit: 5,
-  database: "movieproject",
-});
+const pool = require('../database/mysql.cnx')
 let sql = {
   checkFavMovies: async (movieName,email) => {
      
