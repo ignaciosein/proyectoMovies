@@ -4,10 +4,14 @@ editForm.addEventListener('submit',(e)=>{
     title = document.getElementById('title').value;
     year = document.getElementById('year').value;
     director = document.getElementById('director').value;
+    
     genre = document.getElementById('genre').value;
     runtime = document.getElementById('duration').value;
     poster = document.getElementById('poster').value;
     IdMovie = document.getElementById('IdMovie').value
+    Language = document.getElementById('language').value
+    imdbRating = document.getElementById('rating').value
+    Actors = document.getElementById('actors').value
 
     let data = {
         Title: title,
@@ -16,6 +20,9 @@ editForm.addEventListener('submit',(e)=>{
         Genre: genre,
         Runtime: runtime,
         Poster: poster,
+        Language: Language,
+        imdbRating: imdbRating,
+        Actors: Actors   ,     
         registerDate: new Date(),
         IdMovie: parseInt(IdMovie)
     }

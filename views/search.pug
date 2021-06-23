@@ -14,16 +14,17 @@ html(lang='en')
     #filmContainer
           if arrayVacio              
             for result in arrayVacio
-             p
-              p  
-                h1 #{result.Title}
-              p  Año #{result.Year}
-              p  Director #{result.Director}   
-              p  Duracion '#{result.Runtime} 
-              p  Genero ' #{result.Genre} 
-              p
-                  a(href=`search/${result.Title}`) Ficha Completa
-              img#Poster(src=result.Poster)
-              a(href=`/favMovies/${result.imdbID}`)
-              a(href=`/favMovies/${result.imdbID}/${result.Title}`)
-                img(src="../Public/img/fav.png")
+              a.linkSrch(href=`search/${result.Title}`)
+                .cardSrch
+                  .contSrch
+                    img.Poster(src=result.Poster)
+                    .textSrch
+                      h1 #{result.Title}
+                      .subTextSrch
+                        p  #{result.Year} 
+                        a(href=`/favMovies/${result.imdbID}/${result.Title}`)
+                          img.imgFv(src="../Public/img/fav.png")
+                  .resumenSrch
+                    p  Director #{result.Director}   
+                    p  Duracion '#{result.Runtime} 
+                    p  Genero ' #{result.Genre} 

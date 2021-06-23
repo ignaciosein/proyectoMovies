@@ -94,6 +94,10 @@ const admin = {
             }
         }); */
     },
+    getLogout : async(req,res) =>{
+        await res.clearCookie('token')
+        res.redirect('/')
+    }
 }
 
 module.exports = admin;
