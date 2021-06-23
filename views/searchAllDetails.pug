@@ -4,13 +4,17 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    script(src='../Public/js/menu.js')
+    link(rel='stylesheet', href='../Public/css/menu.css', type='text/css' )
+    link(rel='stylesheet', href='../Public/css/searchAllDetails.css', type='text/css' )
+ 
+    script(src='../Public/js/menu.js' defer)    
     title Document
     body 
+    #imgMenu
       img#menuIcon.blockMenu(src='../Public/img/menu.png')
       img#menuIcon2.noneMenu(src='../Public/img/menu.png')
     #containerMenu
-      ul#menuBurger
+      ul#menuBurger.slide-bottom
         li  
           a(href='/dashboard') Panel de usuario
         li 
@@ -19,28 +23,27 @@ html(lang='en')
           a(href='/search') Buscar peliculas
         li 
           a(href='/logout') Cerrar Sesión      
-        h1 DETALLE COMPLETO PELICULA
-        br
-        a(href=`../search`)  
-          button VOLVER
-        a(href=`../favMovies`)  
-          button MIS PELICULAS FAVORITAS    
-        ul
-           #filmContainer 
-             li Título: #{data2.Title}
-             li Año: #{ data2.Year}
-             li Director: #{data2.Director}
-             li Actores : '#{data2.Actors}'   
-             li Duración: '#{data2.Runtime} 
-             li Género: '#{data2.Genre} 
-             li Idiomas : '#{data2.Language}' 
-             li Valoración : '#{data2.imdbRating}'              
-             img(src=data2.Poster)
-             a(href=`/favMovies/${data2.imdbID}/${data2.Title}`)
-              img(src="../Public/img/fav.png") 
-        ul 
-           li 
-                h1 Opiniones: 
-        for opinions in opiniones                  
-              li
-                h3 #{opinions}            
+    h1 FICHA COMPLETA
+    #filmContainer           
+              #favMovies
+                #divPoster
+                 img#Poster(src=data2.Poster) 
+                #containerText 
+                  a(href=`../search/${data2.Title}`) 
+                    h1 #{data2.Title}
+                  a(href=`/favMovies/${data2.imdbID}/${data2.Title}`)  
+                    img#favStar(src="../Public/img/fav.png") 
+                  p Año: #{ data2.Year}
+                  p Director: #{data2.Director}
+                  p Actores : '#{data2.Actors}'   
+                  p Duración: '#{data2.Runtime} 
+                  p Género: '#{data2.Genre} 
+                  p Idiomas : '#{data2.Language}' 
+                  p Valoración : '#{data2.imdbRating}'
+              #divOpinions        
+                    ul#Op 
+                      li 
+                            h2 Opiniones: 
+                    for opinions in opiniones                  
+                          li
+                            h5 #{opinions}            

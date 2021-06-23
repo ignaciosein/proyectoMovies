@@ -15,6 +15,12 @@ box-shadow: 1px -1px 50px -15px #fff;
  
 }
 
+h1{
+  margin-top: 5%;
+  color: white;
+  text-align: center;
+}
+
 
 #favMovies{
   margin-bottom: 10%;
@@ -56,42 +62,10 @@ margin-left: 80%;
 h1{
   margin-top: 5%;
   color: white;
-  text-align: center;
 }
 
+.iconsAdmin{
 
-#divOpinions{
-
- 
-margin-top: 0px;
-
-
-  font-size: 1.2rem;
-padding-bottom: 20%;
-}
-
-#opinionUl{
-
-  background-color: green;
-
-
-}
-
-#opTittle{
-
-
-  color: red;
-}
-
-h2{
-   margin-top: -2%;
-  margin-left: 20%;
-  margin-bottom: -100px;
-  color: yellow;
-
-}
-
-h5{
-  margin-top: 20px;
-  margin-bottom: -20px;
-}
+  width: 40%;
+     
+ }

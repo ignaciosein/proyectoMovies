@@ -10,28 +10,37 @@ html(lang='en')
   body
     h2 EDITAR PELICULA
     form#formEditMovie
+      label Titulo
       input#title(type='text' placeholder='Título' name="title" value= data[0].Title required) 
       br
-      input#year(type='text' placeholder='Año' name="year" value= data[0].Year required)
+      label Año
+      input#year(type='number' placeholder='Año' name="year" value= data[0].Year required)
       br
+      label Director
       input#director(type='text' placeholder='Director' name="director" value= data[0].Director required)
       br
+      label Actores
       input#actors(type='text' placeholder='Actores' name="actors" value= data[0].Actors required)
       br
+      label Idioma
       input#language(type='text' placeholder='Idioma' name="language" value= data[0].Language required)
       br
-      input#rating(type='text' placeholder='Puntuación' name="rating" value= data[0].imdbRating required)
+      label Puntuación
+      input#rating(type='number' placeholder='Puntuación' name="rating" value= data[0].imdbRating required)
       br
+      label Género
       input#genre(type='text' placeholder='Género' name="genre" value= data[0].Genre required)
       br
-      input#duration(type='text' placeholder='Duración' name="duration"  value= data[0].Runtime required)
+      label Duración
+      input#duration(type='number' placeholder='Duración' name="duration"  value= data[0].Runtime required)
       br
+      label Imagen
       input#poster(type='text' placeholder='Imagen' name="poster"  value= data[0].Poster required)
       br
+      label Id 
       input#IdMovie(type="text" name="IdMovie" value=data[0].IdMovie readonly)
       br
       button#editMovieButton(type='submit') Aceptar
       br
       a(href=`/admin`) 
         button#backButton(type='button') Volver
-  

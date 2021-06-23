@@ -90,3 +90,10 @@ li {
   text-decoration: none;
   list-style: none;
 }
+.slide-bottom{animation:slide-bottom .9s cubic-bezier(.25,.46,.45,.94) both}
+
+ 
+
+@keyframes slide-bottom{0%{transform:translateY(-100px)}100%{transform:translateY(0px)}}
+
+ 
