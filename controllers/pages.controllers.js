@@ -8,8 +8,8 @@ const mySqlM = require('../models/usersGoogle');
 const pages = {
   home: (req, res) => {
     let token = req.cookies.token;
-    if(token|| token != undefined){
-      logica.decoToken(token) == 0 ? res.status(200).render('dashboard'):res.status(200).render('admin')
+    if(token || token != undefined){
+      logica.decoToken(token) == 0 ? res.redirect('/dashboard'):res.redirect('/admin')
     }else{
       res.status(200).render('home')
     }
@@ -136,6 +136,14 @@ const pages = {
   getLogout : async(req,res) =>{
       await res.clearCookie('token')
       res.redirect('/')
+  },
+  allRouters : (req,res)=>{
+    let token = req.cookies.token;
+    if(token|| token != undefined){
+      logica.decoToken(token) == 0 ? res.redirect('/dashboard'):res.redirect('/admin')
+    }else{
+      res.status(200).render('home')
+    }
   }
 };
 

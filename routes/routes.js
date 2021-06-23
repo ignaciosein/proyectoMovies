@@ -39,4 +39,7 @@ router.delete("/deleteFilm/:Title",midW.isAuth,midW.isAdmin, admin.deleteMovie)
 //Rutas logout
 router.get("/logout",pages.getLogout)
 
+//Rutas no existentes
+router.all("*",midW.isAuth,pages.allRouters)
+
 module.exports = router;

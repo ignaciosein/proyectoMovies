@@ -1,11 +1,4 @@
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: 'localhost', 
-    user:'root',
-    database: 'movieproject', 
-    connectionLimit: 5}
-);
-
+const pool = require('../database/mysql.cnx')
 const muserGoogle = {
     searchOneUser: async (user) => {
         let conn;
