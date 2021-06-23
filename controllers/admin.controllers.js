@@ -59,9 +59,6 @@ const admin = {
         }
     },
     deleteMovie: async (req, res) => {
-        
-         
-
         try {
            
             await Movies.findOneAndRemove({ Title: req.params.Title }, function (err) {
@@ -75,24 +72,6 @@ const admin = {
         } catch (error) {
             res.status(500).render("message", { type: "Error: ", message: `${error.message}`, link: req.url, flag: true })
         }
-
-
- 
-
-
-
-
-
-
-
-
-/*         Movies.findOneAndRemove({ title: req.params.Title }, function (err) {
-            if (err) {
-                console.log(err)
-            } else {
-                res.status(200).render("deleteFilm");
-            }
-        }); */
     },
     getLogout : async(req,res) =>{
         await res.clearCookie('token')

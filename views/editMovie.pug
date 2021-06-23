@@ -6,9 +6,12 @@ html(lang='en')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
     script(src='../Public/js/adminEdit.js' defer)
-    title Document
+    link(rel='stylesheet', href='../Public/css/createMovie.css', type='text/css' )
+    link(rel='icon', sizes='16x16 32x32 48x48 64x64', href='https://img.icons8.com/doodle/48/000000/popcorn.png')
+    title Editar película
   body
     h2 EDITAR PELICULA
+  #divContainer
     form#formEditMovie
       label Titulo
       input#title(type='text' placeholder='Título' name="title" value= data[0].Title required) 
@@ -41,6 +44,5 @@ html(lang='en')
       input#IdMovie(type="text" name="IdMovie" value=data[0].IdMovie readonly)
       br
       button#editMovieButton(type='submit') Aceptar
-      br
       a(href=`/admin`) 
         button#backButton(type='button') Volver
