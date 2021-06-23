@@ -1,0 +1,87 @@
+body {
+    background-color: black;
+    background-image: url("../img/foto_bg.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin-top: 85px;
+  }
+  h1{
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      margin: 45px;
+  }
+  h2{
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+  }
+  input{
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    background-color: transparent;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #FFEC4D;
+    text-align: center;
+    padding: 5px 18px 5px 18px;
+    margin: 5px;
+  }
+  ::placeholder { color: white;
+  }
+  .rrss{
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #EB7E7B;
+    border: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    padding: 5px 85px 5px 85px;
+    margin-top: 55px;
+  }
+  .boton1{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    background-color: #F2E812;
+    font-size: 16px;
+    border: solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 46px 5px 46px;
+    margin: 15px 0px 5px 0px;
+  }
+  #googleAuth{
+    margin-top: 10%;
+    width: 50%;
+    padding-left: 26%
+  }
+
+  #divLogin{
+
+
+    display: block;
+  }
+
+  #divSignUp{
+
+
+    display: none;
+  }
+  .logButtons {
+    margin: 2%;
+    height: 30px;
+    border-radius: 4px;
+    border: solid 2 px bla;
+    background-color: #8CD139;
+    
+    color: white;
+    font-weight: bold;
+  }

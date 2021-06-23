@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/createMovie.css', type='text/css' )
+    link(rel='icon', sizes='16x16 32x32 48x48 64x64', href='https://img.icons8.com/doodle/48/000000/popcorn.png')
+    title Crear película
+  body
+    h2 CREAR PELÍCULA
+  #divContainer
+    form#formCreateMovie(action="/createMovie" method="POST")
+      label Titulo
+      input#title(type='text' placeholder='Título' name="title" required)
+      br
+      label Año
+      input#year(type='number' placeholder='Año' name="year" required)
+      br
+      label Director
+      input#director(type='text' placeholder='Director' name="director" required)
+      br
+      label Actores
+      input#actors(type='text' placeholder='Actores' name="actors" required)
+      br
+      label Lenguaje
+      input#language(type='text' placeholder='Idioma' name="language" required)
+      br
+      label Puntuación
+      input#rating(type='number' placeholder='Puntuación' name="rating" required)
+      br
+      label Género
+      input#gender(type='text' placeholder='Género' name="gender" required)
+      br
+      label Duración
+      input#duration(type='number' placeholder='Duración' name="duration" required)
+      br
+      label Poster
+      input#image(type='text' placeholder='Imagen' name="image" required)
+      br
+      button.boton1(type='submit') Crear
+      a(href=`../admin`) 
+        button#backButton(type='button') Volver
+  
