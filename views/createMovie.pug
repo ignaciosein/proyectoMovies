@@ -8,22 +8,31 @@ html(lang='en')
   body
     h2 CREAR PELÍCULA
     form#formCreateMovie(action="/createMovie" method="POST")
+      label Titulo
       input#title(type='text' placeholder='Título' name="title" required)
       br
+      label Año
       input#year(type='text' placeholder='Año' name="year" required)
       br
+      label Director
       input#director(type='text' placeholder='Director' name="director" required)
       br
+      label Actores
       input#actors(type='text' placeholder='Actores' name="actors" required)
       br
+      label Lenguaje
       input#language(type='text' placeholder='Idioma' name="language" required)
       br
+      label Puntuación
       input#rating(type='text' placeholder='Puntuación' name="rating" required)
       br
+      label Género
       input#gender(type='text' placeholder='Género' name="gender" required)
       br
+      label Duración
       input#duration(type='text' placeholder='Duración' name="duration" required)
       br
+      label Poster
       input#image(type='text' placeholder='Imagen' name="image" required)
       br
       button.boton1(type='submit') Crear

@@ -100,12 +100,13 @@ const user = {
       );
 
      
-    
+   
       let data4 = await scraping.scrap(data2.Title)
 
       console.log(data4.arrayVacio)  
 
-      let opiniones = data4.arrayVacio
+      let opiniones = data4.arrayVacio  
+     /*  opiniones= "pruebaaaaaaaaaaaaaa" */
 
       res.status(200).render("searchAllDetails", {data2,opiniones});
     } else {
@@ -122,12 +123,14 @@ const user = {
         imdbID: result.IdMovie,
       };
 
-      let data4 = await scraping.scrap(data2.Title)
+     let data4 = await scraping.scrap(data2.Title)
 
      
       console.log(data4.arrayVacio)  
 
-      let opiniones = data4.arrayVacio
+      let opiniones = data4.arrayVacio 
+
+    /*   opiniones= "pruebaaaaaaaaaaaaaa" */
 
 
       res.status(200).render("searchAllDetails", {data2,opiniones});

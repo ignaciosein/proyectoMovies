@@ -4,28 +4,46 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../Public/css/menu.css', type='text/css' )
+    link(rel='stylesheet', href='../Public/css/favMovies.css', type='text/css' )
+    script(src='../Public/js/menu.js' defer)
     title Document
-  body
+    body
+    #circuleRigth
+    #imgMenu
+      img#menuIcon.blockMenu(src='../Public/img/menu.png')
+      img#menuIcon2.noneMenu(src='../Public/img/menu.png')
+    #containerMenu
+      ul#menuBurger.slide-bottom
+        li  
+          a(href='/dashboard') Panel de usuario
+        li 
+          a(href='/favMovies') Mis peliculas
+        li 
+          a(href='/search') Buscar peliculas
+        li 
+          a(href='/logout') Cerrar Sesión  
     h1 PELÍCULAS FAVORITAS
     P
-     a(href=`../search`)  
-      button BUSCADOR DE PELICULAS    
+    
     #filmContainer
           if arrayVacio              
             for result in arrayVacio
-             p
-              p  
-                h1 #{result.Title} 
-              p Año: #{ result.Year}
-              p Director: #{result.Director}
-              p Actores : '#{result.Actors}'   
-              p Duración: '#{result.Runtime} 
-              p Género: '#{result.Genre} 
-              p Idiomas : '#{result.Language}' 
-              p Valoración : '#{result.imdbRating}'                  
-              p
-                  a(href=`../search/${result.Title}`) Ficha Completa
-              p
+              #favMovies
+                #divPoster
+                 img#Poster(src=result.Poster) 
+                #containerText 
+                  a(href=`../search/${result.Title}`) 
+                    h1 #{result.Title}
                   a(href=`../deleteFilm/${result.imdbID}`)  
-                    img(src="../Public/img/unfav.png")
-              img#Poster(src=result.Poster) 
+                    img#favStar(src="../Public/img/unfav.png") 
+                  p Año: #{ result.Year}
+                  p Director: #{result.Director}
+                  p Actores : '#{result.Actors}'   
+                  p Duración: '#{result.Runtime} 
+                  p Género: '#{result.Genre} 
+                  p Idiomas : '#{result.Language}' 
+                  p Valoración : '#{result.imdbRating}'                  
+
+                
+              
