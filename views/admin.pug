@@ -5,7 +5,9 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='../Public/css/menu.css', type='text/css' )
-    link(rel='stylesheet', href='../Public/css/favMovies.css', type='text/css' )
+ 
+    link(rel='stylesheet', href='../Public/css/admin.css', type='text/css' )
+
  
     script(src='../Public/js/menu.js' defer)
     script(src='../Public/js/admin.js' defer)
@@ -18,33 +20,32 @@ html(lang='en')
     #containerMenu
       ul#menuBurger.slide-bottom
         li  
-          a(href='/createMovie') Crear Pelícuka
+          a(href='/createMovie') Crear Película
  
         li 
           a(href='/search') Buscar peliculas
         li 
           a(href='/logout') Cerrar Sesión  
     h1 ADMIN 
-  #filmContainer
-      if resultM
-          for result in resultM 
-            a(href=`search/${result.Title}`)
-                #favMovies
-                  #divPoster
-                  img#Poster(src=result.Poster) 
-                  #containerText 
-                    a(href=`../search/${result.Title}`) 
-                      h1 #{result.Title}
-  
-                    p Año: #{ result.Year}
-                    p Director: #{result.Director}
-                    p Actores : '#{result.Actors}'   
-                    p Duración: '#{result.Runtime} 
-                    p Género: '#{result.Genre} 
-                    p Idiomas : '#{result.Language}' 
-                    p Valoración : '#{result.imdbRating}'
+    #filmContainer
+        if resultM
+            for result in resultM  
+                  #favMovies
+                    #divPoster
+                    img#Poster(src=result.Poster) 
+                    #containerText 
+                      a(href=`../search/${result.Title}`) 
+                        h1 #{result.Title}  
+                      p Año: #{ result.Year}
+                      p Director: #{result.Director}
+                      p Actores : '#{result.Actors}'   
+                      p Duración: '#{result.Runtime} 
+                      p Género: '#{result.Genre} 
+                      p Idiomas : '#{result.Language}' 
+                      p Valoración : '#{result.imdbRating}'
 
-                    a(href=`#`)
-                     img#deleteMovie.iconsAdmin(src="../Public/img/trash.png" onclick="remove('" + result.Title + "')" name="deleteButton")                       
-                    a(href=`/editMovie/?data=${result.IdMovie}`)
-                     img#editMovieButton.iconsAdmin(src="../Public/img/edit.png")
+                      a(href=`#`)
+                        img#deleteMovie.iconsAdmin(src="../Public/img/trash.png" onclick="remove('" + result.Title + "')" name="deleteButton")
+                      a(href=`/editMovie/?data=${result.IdMovie}`)
+                        img#editMovieButton.iconsAdmin(src="../Public/img/edit.png") 
+  
