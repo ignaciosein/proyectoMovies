@@ -4,8 +4,21 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    script(src='../Public/js/menu.js')
     title Document
     body 
+      img#menuIcon.blockMenu(src='../Public/img/menu.png')
+      img#menuIcon2.noneMenu(src='../Public/img/menu.png')
+    #containerMenu
+      ul#menuBurger
+        li  
+          a(href='/dashboard') Panel de usuario
+        li 
+          a(href='/favMovies') Mis peliculas
+        li 
+          a(href='/search') Buscar peliculas
+        li 
+          a(href='/logout') Cerrar Sesión      
         h1 DETALLE COMPLETO PELICULA
         br
         a(href=`../search`)  
